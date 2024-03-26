@@ -62,9 +62,7 @@ class PublisherController extends Controller
     {
         $publisher->update($request->all());
 
-        $publishers = Publisher::all();
-
-        return redirect()->route('publisher.index', ['publishers' => $publishers]);
+        return redirect()->route('publisher.index');
 
     }
 

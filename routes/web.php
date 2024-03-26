@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DomainController;
 use App\Http\Controllers\PublisherController;
 use App\Models\Domain;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,7 @@ Route::get('/', [PublisherController::class,'index'])->name('principal');
 Route::middleware('authentication')->group(function(){
     
     Route::resource('publisher',PublisherController::class);
-    Route::resource('domain', Domain::class);
+    Route::resource('domain', DomainController::class);
 });
 
 

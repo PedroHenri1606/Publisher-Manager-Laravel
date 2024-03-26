@@ -1,59 +1,96 @@
 @extends('layout.template')
 
-@section('title', 'Edit')
+@section('title', 'Show')
 
 @section('content')
 
-<form>
-    <fieldset disabled>
-        <div class="row">
-            <div class="col" >
-                <input type="text" value="{{ $publisher->name ?? old('name')}}" name="name" class="form-control disable" placeholder="Name" aria-label="Name">
-            </div>
-            <div class="col">
-                <input type="email" value="{{ $publisher->email ?? old('email')}}" name="email" class="form-control" placeholder="Email" aria-label="Email">
-            </div>
+<div class= "container tabela">
+    <div class="container text-center">
+        <div class="opcoes">
+            Publisher Show
         </div>
 
-        <div class="row">
-            <div class="col">
-                <input type="text" value="{{ $publisher->document ?? old('document')}}" name="document" class="form-control" placeholder="Document" aria-label="Document">
-            </div>
-            <div class="col">
-                <input type="text" value="{{ $publisher->phone ?? old('phone')}}" name="phone" class="form-control" placeholder="Phone" aria-label="Phone">
-            </div>
-        </div>
+        <form>
+            <fieldset disabled>
+                <div class="row" >
 
-        <div class="row">
-            <div class="col">
-                <input type="text" value="{{ $publisher->status ?? old('status')}}" name="status" class="form-control" placeholder="Status" aria-label="Status">
-            </div>
-        </div>
+                    <div class="row mb-2">
+                        <label for="name" class="col dado">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value="{{ $publisher->name ?? old('name')}}" name="name" class="form-control disable" placeholder="Name">
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col">
-                <input type="password" value="{{ $publisher->password ?? old('password')}}" name="password" class="form-control" placeholder="Password" aria-label="Password">
-            </div>
-        </div>
+                   <div class="row mb-2">
+                        <label for="nome" class="col dado">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" value="{{ $publisher->email ?? old('email')}}" name="email" class="form-control disable" placeholder="Email">
+                        </div>
+                    </div> 
 
-        <select class="form-control" name="role_id">
-            <option selected > {{ $publisher->role->name}} </option>
-        </select>
-    </fieldset>
-</form>
+                  <div class="row mb-2">
+                        <label for="nome" class="col dado">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value="{{ $publisher->password ?? old('password')}}" name="document" class="form-control disable" placeholder="Password">
+                        </div>
+                    </div>
 
+                    <div class="row mb-2">
+                        <label for="nome" class="col dado">Document:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value="{{ $publisher->document ?? old('document')}}" name="document" class="form-control disable" placeholder="Document">
+                        </div>
+                    </div>
 
-<form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
-    <tr>
-        <td>
-            <a class="btn btn-success" href="{{ route('publisher.index')}}" role="button">Return</a>
-            @method('DELETE')
-            @csrf
-            <!-- <button type="submit"> Excluir </button> -->
-            <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$publisher->id}}').submit()">Delete Publisher </a>
-        </td>
-    <tr>
-</form>
+                    <div class="row mb-2">
+                        <label for="nome" class="col dado">Phone:</label>
+                        <div class="col-sm-10">
+                            <input type="number" value="{{ $publisher->phone ?? old('phone')}}" name="phone" class="form-control disable" placeholder="Phone">
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <label for="nome" class="col dado">Status:</label>
+                        <div class="col-sm-10">
+                            <select class="form-select">
+                                <option value="{{ $publisher->status}}"> 
+                                    @if($publisher->status === 1)
+                                        Active
+                                    @else
+                                        Disactive
+                                    @endif
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <label for="nome" class="col dado">Role:</label>
+                        <div class="col-sm-10">
+                          <select class="form-select">
+                            <option selected > {{ $publisher->role->name}} </option>                          
+                          </select>
+                        </div>
+                    </div>
+                </div>       
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="container text-center">
+    <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
+        <tr>
+            <td>
+                <a class="btn btn-success" href="{{ route('publisher.index')}}" role="button">Return</a>
+                @method('DELETE')
+                @csrf
+                <!-- <button type="submit"> Excluir </button> -->
+                <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$publisher->id}}').submit()">Delete Publisher </a>
+            </td>
+        <tr>
+    </form>
+</div>
 
 @endsection
 

@@ -22,4 +22,8 @@ class Publisher extends Model
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public function domains(){
+        return $this->hasMany(Domain::class);
+    }
 }

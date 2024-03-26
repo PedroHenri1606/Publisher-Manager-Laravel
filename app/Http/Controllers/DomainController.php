@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domain;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class DomainController extends Controller
@@ -11,7 +13,9 @@ class DomainController extends Controller
      */
     public function index()
     {
-        //
+        $domains = Domain::all();
+
+        return view('domain.index', ['domains' => $domains]);
     }
 
     /**
@@ -19,7 +23,10 @@ class DomainController extends Controller
      */
     public function create()
     {
-        //
+        $publishers = Publisher::all();
+
+        return view('domain.create', ['publishers' => $publishers]);
+
     }
 
     /**
@@ -27,38 +34,45 @@ class DomainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $domain = Domain::create($request->all());
+
+        return redirect()->route('domain.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Domain $domain)
     {
-        //
+        return view('domain.show', ['domain'=> $domain]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Domain $domain)
     {
-        //
+        $publishers = Publisher::all();
+        return view('domain.edit', ['publishers' => $publishers, 'domain' => $domain]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Domain $domain)
     {
-        //
+        $domain->update($request->all());
+
+        return redirect()->route('domain.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Domain $domain)
     {
-        //
+        $domain->delete();
+
+        return redirect()->route('domain.index', ['domain' => $domain->id]);
     }
 }

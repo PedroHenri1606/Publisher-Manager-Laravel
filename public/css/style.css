@@ -1,0 +1,48 @@
+form{
+    padding-top: 5%;
+}
+
+form{
+    padding-top: 5%;
+}
+
+.tabela{
+    margin-top: 2vw;
+    background-color: WHITE;
+    height: 75vh;
+    border-radius: 6px;
+}
+
+.input{
+    width: 40%;
+    height: 100%;
+}
+ 
+.opcoes{
+    align-items: center;
+    text-align: center;
+    color: #00000033;
+    padding: 2vw;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.dado{
+    background-color: white;
+    align-items: center;
+    color: #00000033;
+    padding-left: 5vw;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.botao{
+    font-weight: bolder;
+    margin-top: 16vw;
+    font-size: 2.5vh;
+    transition: 1s;
+    margin-right: 2.5vh;
+}
+

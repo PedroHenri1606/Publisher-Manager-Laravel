@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
   <div class="container-fluid">
+
     <a class="navbar-brand" href="{{route('publisher.index')}}">Publiser Manager</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,10 +10,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="#">Publishers</a>
+          <a class="nav-link " aria-current="page" href="{{route('publisher.index')}}">Publishers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Domains</a>
+          <a class="nav-link" aria-current="page" href="{{route('domain.index')}}">Domains</a>
         </li>
       </ul>
     </div>

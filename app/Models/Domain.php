@@ -10,8 +10,12 @@ class Domain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'domain',
         'publisher_id',
         'status',
     ];
+
+    public function publisher(){
+        return $this->belongsTo(Publisher::class);
+    }
 }

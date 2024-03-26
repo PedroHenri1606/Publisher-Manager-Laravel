@@ -1,16 +1,21 @@
-<div class="topo">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <div class="logo">
-        <img src="{{ asset('img/logo.png')}}">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{route('publisher.index')}}">Publiser Manager</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="#">Publishers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Domains</a>
+        </li>
+      </ul>
     </div>
 
-    <div class="menu">
-        <ul>
-            <li><a href="{{ route('app.home') }}">Home</a></li>
-            <li><a href="{{ route('app.cliente') }}">Cliente</a></li>
-            <li><a href="{{ route('app.fornecedor') }}">Fornecedor</a></li>
-            <li><a href="{{ route('produto.index') }}">Produto</a></li>
-            <li><a href="{{ route('app.sair') }}">Sair</a></li>
-        </ul>
-    </div>
-</div>
+  </div>
+</nav>

@@ -12,8 +12,8 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers = Publisher::all();
-        return view('publisher.index', ['publishers' => $publishers]);
+        //$publishers = Publisher::all();
+        return view('publisher.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        return view('publisher.create');
     }
 
     /**
@@ -29,38 +29,98 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validations = [
+            'name' => 'required|min:3:|max:50',
+            'phone' => 'required|max:15',
+            'email' => 'email',
+            'document' => 'required|max:20',
+            'password' => 'required|max:50',
+        ];
+
+        $feedback = [
+            'name.required' => 'Name is a required field',
+            'name.min' => 'Name must contain at least 3 characters',
+            'name.max' => 'Name must contain up to 40 characters',
+
+            'phone.required' => 'Phone is a required field',
+            'phone.max' => 'Phone must contain up to 15 characters',
+            
+            'email.email' => 'Please enter a valid email address',
+
+            'document.required' => 'Document is a required field',
+            'document.max' => 'Document must contain up to 20 characters',
+
+            'password.required' => 'Password is a required field',
+            'password.max' => 'Password must contain up to 50 characters',
+
+        ];
+
+        $request->validate($validations, $feedback);
+
+        $publisher = Publisher::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Publisher $publisher)
     {
-        //
+        return view('publiser.show', ['publishers' => $publisher]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Publisher $publisher)
     {
-        //
+        return view('publiser.edit', ['publisher' => $publisher]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Publisher $publisher)
     {
-        //
+        $validations = [
+            'name' => 'required|min:3:|max:50',
+            'phone' => 'required|max:15',
+            'email' => 'email',
+            'document' => 'required|max:20',
+            'password' => 'required|max:50',
+        ];
+
+        $feedback = [
+            'name.required' => 'Name is a required field',
+            'name.min' => 'Name must contain at least 3 characters',
+            'name.max' => 'Name must contain up to 40 characters',
+
+            'phone.required' => 'Phone is a required field',
+            'phone.max' => 'Phone must contain up to 15 characters',
+            
+            'email.email' => 'Please enter a valid email address',
+
+            'document.required' => 'Document is a required field',
+            'document.max' => 'Document must contain up to 20 characters',
+
+            'password.required' => 'Password is a required field',
+            'password.max' => 'Password must contain up to 50 characters',
+
+        ];
+
+        $request->validate($validations, $feedback);
+
+        $publisher->update($request->all());
+        return redirect()->route('publisher.show', ['publisher' => $publisher]);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Publisher $publisher)
     {
-        //
+        $publisher->delete();
+
+        return redirect()->route('publisher.index', ['publisher'=> $publisher->id]);
     }
 }

@@ -12,7 +12,7 @@
 
         <form>
             <fieldset disabled>
-                <div class="row" >
+                <div class="row">
 
                     <div class="row mb-2">
                         <label for="name" class="col dado">Name:</label>

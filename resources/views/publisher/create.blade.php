@@ -70,7 +70,6 @@
                         </select>
                     </div>
                 </div>
-
             </div>       
             <a class="btn btn-primary" href="{{route('publisher.index')}}" role="button">Return</a>
             <button type="submit" class="btn btn-success" >Create</button>

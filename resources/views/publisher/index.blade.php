@@ -9,7 +9,7 @@
     
       <div class="row align-items-start">
         <div class="col opcoes">
-          Publisher List
+          Publishers List
         </div>
 
         <div class="col mt-5">
@@ -44,9 +44,9 @@
               <td>{{ $publisher->document }}</td>
               <td>{{ $publisher->role->name }}</td>
                 @if( $publisher->status === 1)
-                    <td class="col ativo"> Active </td>
+                    <td> Active </td>
                 @else
-                    <td class="col inativo"> Disactive</td>
+                    <td> Disactive</td>
                 @endif
               <td>
                 <a class="btn btn-warning" href="{{ route('publisher.edit', ['publisher' => $publisher])}}" role="button">Edit Publisher</a>

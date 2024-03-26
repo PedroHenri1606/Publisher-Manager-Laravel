@@ -4,33 +4,51 @@
 
 @section('content')
 
-<form method= "post" action="{{ route('domain.store')}}" >
-    @csrf
-    <div class="row">
+<div class="container tabela">
+    <div class="container text-center">
+        <div class="opcoes">
+            Domain Add
+        <div>   
 
-    <div class="mb-3">
-        <div class="col">
-            <input type="text" name="domain" class="form-control" placeholder="Enter the website uri here">
-        </div>
+        <form method= "post" action="{{ route('domain.store')}}" >
+            @csrf
+            <div class="row">
 
-        <select name="publisher_id" class="form-control">
-            <option>-- Select Publisher -- </option>
-                @foreach($publishers as $publisher)
-                    <option value="{{ $publisher->id }}"> {{ $publisher->name}} </option>
-                @endforeach
-        </select>
+                <div class="row mb-2">
+                    <label for="name" class="col dado">Domain:</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{ $domain->domain ?? old('name')}}" name="domain" class="form-control " placeholder="Domain">
+                    </div>
+                </div>
 
-        <div class="row">
-            <select name="status" class="form-control">
-                <option>-- Select Status -- </option>
-                <option value="1">Active</option>
-                <option value="2">Inactive</option>
-            </select>
-        </div>
+                <div class="row mb-2">
+                    <label for="publisher_id" class="col dado">Publisher:</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="publisher_id">
+                                <option selected> -- Select Publisher -- </option>
+                            @foreach($publishers as $publisher)
+                                <option value="{{ $publisher->id }}"> {{ $publisher->name}} </option> 
+                            @endforeach                         
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label for="nome" class="col dado">Status:</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="status">
+                            <option> -- Select Status -- </option>
+                            <option value="1"> Active </option>
+                            <option value="2"> Disable </option>  
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-primary" href="{{route('domain.index')}}" role="button">Return</a>
+            <button type="submit" class="btn btn-success" >Create</button>
+        </form>
     </div>
-
-    <button type="submit" class="btn btn-success" >Create</button>
-</form>
+</div>
 
 
 @endsection

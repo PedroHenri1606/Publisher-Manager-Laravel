@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publisher;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller
@@ -12,16 +13,18 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        //$publishers = Publisher::all();
-        return view('publisher.index');
+        $publishers = Publisher::all();
+        return view('publisher.index', ['publishers' => $publishers]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('publisher.create');
+        $publishers = Publisher::all();
+        $roles = Role::all();
+        return view('publisher.create', ['publishers' => $publishers, 'roles' => $roles]);
     }
 
     /**
@@ -29,35 +32,10 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        $validations = [
-            'name' => 'required|min:3:|max:50',
-            'phone' => 'required|max:15',
-            'email' => 'email',
-            'document' => 'required|max:20',
-            'password' => 'required|max:50',
-        ];
-
-        $feedback = [
-            'name.required' => 'Name is a required field',
-            'name.min' => 'Name must contain at least 3 characters',
-            'name.max' => 'Name must contain up to 40 characters',
-
-            'phone.required' => 'Phone is a required field',
-            'phone.max' => 'Phone must contain up to 15 characters',
-            
-            'email.email' => 'Please enter a valid email address',
-
-            'document.required' => 'Document is a required field',
-            'document.max' => 'Document must contain up to 20 characters',
-
-            'password.required' => 'Password is a required field',
-            'password.max' => 'Password must contain up to 50 characters',
-
-        ];
-
-        $request->validate($validations, $feedback);
 
         $publisher = Publisher::create($request->all());
+
+        return redirect()->route('publisher.index');
     }
 
     /**
@@ -65,7 +43,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        return view('publiser.show', ['publishers' => $publisher]);
+        return view('publisher.show', ['publisher' => $publisher]);
     }
 
     /**
@@ -73,7 +51,8 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        return view('publiser.edit', ['publisher' => $publisher]);
+        $roles = Role::all(); 
+        return view('publisher.edit', ['publisher' => $publisher, 'roles' => $roles]);
     }
 
     /**
@@ -81,36 +60,11 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-        $validations = [
-            'name' => 'required|min:3:|max:50',
-            'phone' => 'required|max:15',
-            'email' => 'email',
-            'document' => 'required|max:20',
-            'password' => 'required|max:50',
-        ];
-
-        $feedback = [
-            'name.required' => 'Name is a required field',
-            'name.min' => 'Name must contain at least 3 characters',
-            'name.max' => 'Name must contain up to 40 characters',
-
-            'phone.required' => 'Phone is a required field',
-            'phone.max' => 'Phone must contain up to 15 characters',
-            
-            'email.email' => 'Please enter a valid email address',
-
-            'document.required' => 'Document is a required field',
-            'document.max' => 'Document must contain up to 20 characters',
-
-            'password.required' => 'Password is a required field',
-            'password.max' => 'Password must contain up to 50 characters',
-
-        ];
-
-        $request->validate($validations, $feedback);
-
         $publisher->update($request->all());
-        return redirect()->route('publisher.show', ['publisher' => $publisher]);
+
+        $publishers = Publisher::all();
+
+        return redirect()->route('publisher.index', ['publishers' => $publishers]);
 
     }
 
@@ -119,8 +73,9 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
+
         $publisher->delete();
 
-        return redirect()->route('publisher.index', ['publisher'=> $publisher->id]);
+        return redirect()->route('publisher.index', ['publisher' => $publisher->id]);
     }
 }

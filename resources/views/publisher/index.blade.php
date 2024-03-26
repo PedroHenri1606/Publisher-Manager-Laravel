@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('titulo', 'Home')
+@section('title', 'Home')
 
 @section('content')
 
@@ -16,20 +16,27 @@
       <th scope="col">Document</th>
       <th scope="col">Role</th>
       <th scope="col">Status</th>
-      <th scope="col">Action</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td><a class="btn btn-warning" href="{{route('publisher.edit')}}" role="button">Edit Publisher</a></td>
-    </tr>
+        @foreach($publishers as $publisher)
+            <tr>
+              <td>{{ $publisher->id }}</td>
+              <td>{{ $publisher->name }}</td>
+              <td>{{ $publisher->phone }}</td>
+              <td>{{ $publisher->email }}</td>
+              <td>{{ $publisher->document }}</td>
+              <td>{{ $publisher->role->name }}</td>
+              <td>{{ $publisher->status }}</td>
+              <td>
+                <a class="btn btn-warning" href="{{ route('publisher.edit', ['publisher' => $publisher])}}" role="button">Edit Publisher</a>
+                <a class="btn btn-success" href="{{ route('publisher.show', ['publisher' => $publisher])}}" role="button">Details</a>
+              </td>
+
+              </tr>
+        @endforeach
   </tbody>
 </table>
 

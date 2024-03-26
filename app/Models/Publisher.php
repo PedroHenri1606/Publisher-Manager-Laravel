@@ -18,4 +18,8 @@ class Publisher extends Model
         'role_id',
         'status',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
 }

@@ -28,6 +28,15 @@ form{
     text-align: left;
 }
 
+.titulo{
+    align-items: center;
+    text-align: center;
+    color: #00000033;
+    padding: 2vw;
+    font-size: 3vh;
+    font-weight: bolder;
+}
+
 .dado{
     background-color: white;
     align-items: center;

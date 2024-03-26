@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domain;
 use App\Models\Publisher;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -43,7 +44,9 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        return view('publisher.show', ['publisher' => $publisher]);
+        $domains = Domain::where('publisher_id', $publisher->id)->get();
+
+        return view('publisher.show', ['publisher' => $publisher, 'domains' => $domains]);
     }
 
     /**

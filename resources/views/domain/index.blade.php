@@ -25,6 +25,7 @@
           <th scope="col">Id</th>
           <th scope="col">URI</th>
           <th scope="col">Publisher</th>
+          <th scope="col">Ravshare</th>
           <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
@@ -35,6 +36,7 @@
                 <td>{{ $domain->id }}</td>
                 <td>{{ $domain->domain }}</td>
                 <td>{{ $domain->publisher->name }}</td>
+                <td>{{ $domain->ravshare }}%</td>
                   @if( $domain->status === 1)
                       <td> Active </td>
                   @else

@@ -32,6 +32,13 @@
                 </div>
 
                 <div class="row mb-2">
+                        <label for="ravshare" class="form-label col dado">Ravshare:</label>
+                    <div class="col-sm-10">
+                        <input type="number" value="{{ $domain->ravshare ?? old('ravshare')}}" name="ravshare"class="form-control" max="100">
+                    </div>
+                </div>
+
+                <div class="row mb-2">
                     <label for="nome" class="col dado">Status:</label>
                     <div class="col-sm-10">
                         <select class="form-select" name="status">

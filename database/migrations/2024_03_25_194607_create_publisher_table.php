@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publisher', function (Blueprint $table) {
+        Schema::create('publishers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('phone');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('role_id')->references('id')->on('role');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -31,10 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('publisher', function (Blueprint $table){
-            $table->dropForeign('role_id');
+        Schema::table('publishers', function (Blueprint $table){
+            $table->dropForeign('publishers_role_id_foreign');
         });
         
-        Schema::dropIfExists('publisher');
+        Schema::dropIfExists('publishers');
     }
 };

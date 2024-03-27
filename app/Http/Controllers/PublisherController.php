@@ -23,9 +23,9 @@ class PublisherController extends Controller
      */
     public function create(Request $request)
     {
-        $publishers = Publisher::all();
+        
         $roles = Role::all();
-        return view('publisher.create', ['publishers' => $publishers, 'roles' => $roles]);
+        return view('publisher.create', ['roles' => $roles]);
     }
 
     /**
@@ -33,6 +33,33 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
+        $validations = [
+            'name'     => 'required|min:3|max:50',
+            'phone'    => 'required|max:15',
+            'email'    => 'email',
+            'document' => 'required|max:20',
+            'password' => 'required|max:50',
+        ];
+
+        $feedbacks = [
+            'name.required' => 'Name is a required field',
+            'name.min' => 'Name must contain at least 3 characters',
+            'name.max' => 'Name must contain up to 40 characters',
+
+            'phone.required' => 'Phone is a required field',
+            'phone.max' => 'Phone must contain up to 15 characters',
+
+            'email.email' => 'Please enter a valid email address',
+
+            'document.required' => 'Document is a required field',
+            'document.max' => 'Document must contain up to 20 characters',
+
+            'password.required' => 'Password is a required field',
+            'password.max' => 'Password must contain up to 50 characters',
+
+        ];
+        
+        $request->validate($validations, $feedbacks);
 
         $publisher = Publisher::create($request->all());
 
@@ -63,6 +90,34 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
+        $validations = [
+            'name' => 'required|min:3:|max:50',
+            'phone' => 'required|max:15',
+            'email' => 'email',
+            'document' => 'required|max:20',
+            'password' => 'required|max:50',
+        ];
+
+        $feedbacks = [
+            'name.required' => 'Name is a required field',
+            'name.min' => 'Name must contain at least 3 characters',
+            'name.max' => 'Name must contain up to 40 characters',
+
+            'phone.required' => 'Phone is a required field',
+            'phone.max' => 'Phone must contain up to 15 characters',
+
+            'email.email' => 'Please enter a valid email address',
+
+            'document.required' => 'Document is a required field',
+            'document.max' => 'Document must contain up to 20 characters',
+
+            'password.required' => 'Password is a required field',
+            'password.max' => 'Password must contain up to 50 characters',
+
+        ];
+
+        $request->validate($validations, $feedbacks);
+
         $publisher->update($request->all());
 
         return redirect()->route('publisher.index');

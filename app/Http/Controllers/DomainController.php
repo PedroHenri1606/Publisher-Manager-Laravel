@@ -34,6 +34,16 @@ class DomainController extends Controller
      */
     public function store(Request $request)
     {
+        $validations = [
+
+        ];
+
+        $feedbacks = [
+
+        ];
+
+        $request->validate($validations, $feedbacks);
+
         $domain = Domain::create($request->all());
 
         return redirect()->route('domain.index');
@@ -61,6 +71,16 @@ class DomainController extends Controller
      */
     public function update(Request $request, Domain $domain)
     {
+        $validations = [
+
+        ];
+
+        $feedbacks = [
+
+        ];
+
+        $request->validate($validations, $feedbacks);
+
         $domain->update($request->all());
 
         return redirect()->route('domain.index');

@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('domain', function (Blueprint $table) {
+        Schema::create('domains', function (Blueprint $table) {
             $table->id();
             $table->string('domain');
             $table->unsignedBigInteger('publisher_id');
+            $table->integer('ravshare');
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('publisher_id')->references('id')->on('publisher');
+            $table->foreign('publisher_id')->references('id')->on('publishers');
         });
     }
 
@@ -27,11 +28,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('domain', function (Blueprint $table) {
-            $table->dropForeign('publisher_id');
+        Schema::table('domains', function (Blueprint $table) {
+            $table->dropForeign('domains_publisher_id_foreign');
         
         });
         
-        Schema::dropIfExists('domain');
+        Schema::dropIfExists('domains');
     }
 };

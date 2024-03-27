@@ -9,10 +9,13 @@ class Domain extends Model
 {
     use HasFactory;
 
+    protected $table = "domains";
+
     protected $fillable = [
         'domain',
         'publisher_id',
         'status',
+        'ravshare'
     ];
 
     public function publisher(){

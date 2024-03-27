@@ -46,12 +46,8 @@ class LoginController extends Controller
             $_SESSION['name'] = $userLog->name;
             $_SESSION['email'] = $email;
 
-            if($userLog->role_id == 1){
-                return redirect()->route('publisher.index');
-            } else if($userLog->role_id == 2){
-                return redirect()->route('publisher.index');
-            }
-
+    
+            return redirect()->route('publisher.index', ['user_id' => $userLog->id]);
         } else {
             return redirect()->route('login', ['erro' => 1]);
         }

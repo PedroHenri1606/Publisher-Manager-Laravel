@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table("users", function (Blueprint $table) {
             $table->foreign('role_id')->references('id')->on('roles')->after('email');
+            $table->boolean('status');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table){
             $table->dropForeign('users_role_id_foreign');
+            $table->dropColumn('status');
         });
     }
 };

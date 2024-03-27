@@ -4,6 +4,9 @@
 
 @section('content')
 
+@include('layout._partials.navbar')
+
+
   <div class="container tabela">
     <div class="container text-center">
     
@@ -43,7 +46,7 @@
                       <td> Disactive</td>
                   @endif
                 <td>
-                  <a class="btn btn-warning" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Publisher</a>
+                  <a class="btn btn-outline-success" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Publisher</a>
                   <a class="btn btn-success" href="{{ route('domain.show', ['domain' => $domain])}}" role="button">Details</a>
                 </td>
                 </tr>

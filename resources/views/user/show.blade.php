@@ -10,35 +10,33 @@
 <div class= "container tabela">
     <div class="container text-center">
         <div class="opcoes">
-            Domain Show
+            User Show
         </div>
 
         <form>
             <fieldset disabled>
-
                 <div class="row">
+
                     <div class="row mb-2">
-                            <label for="name" class="col dado">Domain:</label>
+                        <label for="name" class="col dado">Name:</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{ $domain->domain ?? old('name')}}" name="domain" class="form-control " placeholder="Domain">
+                            <input type="text" value="{{ $user->name ?? old('name')}}" name="name" class="form-control disable" placeholder="Name">
                         </div>
                     </div>
 
-                    <div class="row mb-2">
-                        <label for="publisher_id" class="col dado">Publisher:</label>
+                   <div class="row mb-2">
+                        <label for="nome" class="col dado">Email:</label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="publisher_id">
-                                <option> {{ $domain->publisher->name}} </option>                        
-                            </select>
+                            <input type="email" value="{{ $user->email ?? old('email')}}" name="email" class="form-control disable" placeholder="Email">
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="row mb-2">
                         <label for="nome" class="col dado">Status:</label>
                         <div class="col-sm-10">
                             <select class="form-select">
-                                <option value="{{ $domain->status}}"> 
-                                    @if($domain->status === 1)
+                                <option value="{{ $user->status}}"> 
+                                    @if($user->status === 1)
                                         Active
                                     @else
                                         Disactive
@@ -54,14 +52,14 @@
 
 
     <div class="container text-center">
-        <form id="form_{{$domain->id}}" method="post" action ="{{ route('domain.destroy', ['domain' => $domain->id]) }}"> 
+        <form id="form_{{$user->id}}" method="post" action ="{{ route('user.destroy', ['user' => $user->id]) }}"> 
             <tr>
                 <td>
-                    <a class="btn btn-outline-success" href="{{ route('domain.index')}}" role="button">Return</a>
+                    <a class="btn btn-outline-success" href="{{ route('user.index')}}" role="button">Return</a>
                     @method('DELETE')
                     @csrf
                     <!-- <button type="submit"> Excluir </button> -->
-                    <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$domain->id}}').submit()">Delete Domain </a>
+                    <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$user->id}}').submit()">Delete User </a>
                 </td>
             <tr>
         </form>

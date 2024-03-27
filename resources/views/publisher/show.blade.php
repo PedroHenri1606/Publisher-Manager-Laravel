@@ -4,6 +4,9 @@
 
 @section('content')
 
+@include('layout._partials.navbar')
+
+
 <div class= "container tabela">
     <div class="container text-center">
         <div class="opcoes">
@@ -103,13 +106,13 @@
             </tbody>
         </table>
     </div>
-</div>
+</div>  
 
 <div class="container text-center">
     <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
         <tr>
             <td>
-                <a class="btn btn-success" href="{{ route('publisher.index')}}" role="button">Return</a>
+                <a class="btn btn-outline-success" href="{{ route('publisher.index')}}" role="button">Return</a>
                 @method('DELETE')
                 @csrf
                 <!-- <button type="submit"> Excluir </button> -->

@@ -25,9 +25,7 @@ class PublisherController extends Controller
      */
     public function create(Request $request)
     {
-        
-        $roles = Role::all();
-        return view('publisher.create', ['roles' => $roles]);
+        return view('publisher.create');
     }
 
     /**

@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('layout._partials.navbar')
+
 <form method= "post" action="{{ route('domain.update', ['domain' => $domain->id])}}" >
     @csrf
     @method('PUT')
@@ -14,7 +16,7 @@
             <div class="row">
 
                 <div class="row mb-2">
-                        <label for="name" class="col dado">Domain:</label>
+                    <label for="name" class="col dado">Domain:</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{ $domain->domain ?? old('name')}}" name="domain" class="form-control " placeholder="Domain">
                     </div>
@@ -56,9 +58,10 @@
                     </div>
                 </div>
             </div>
+            <a class="btn btn-outline-success" href="{{route('domain.index')}}" role="button">Return</a>
+            <button type="submit" class="btn btn-success" >Edit</button>
         </div>
-         <a class="btn btn-primary" href="{{route('domain.index')}}" role="button">Return</a>
-        <button type="submit" class="btn btn-success" >Edit</button>
+    </div>
 </form>
 
 

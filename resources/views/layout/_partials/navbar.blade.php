@@ -23,11 +23,16 @@
               <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
             </li>
             
-            @if(1 + 1 != 2)
+            <li class="nav-item">
+              <a class="item-nav" aria-current="page" href="{{route('user.index')}}">Users</a>
+            </li>
+            {{--
+            @if($user->role_id == 1)
             <li class="nav-item">
               <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Users</a>
             </li>
             @endif
+            --}}
           </ul>
         </div>
       </div>

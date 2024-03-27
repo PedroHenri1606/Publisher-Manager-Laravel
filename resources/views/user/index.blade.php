@@ -12,11 +12,11 @@
     
       <div class="row align-items-start">
         <div class="col opcoes">
-          Publishers List
+          User List
         </div>
 
         <div class="col mt-5">
-          <a class="btn btn-success" href="{{route('publisher.create')}}" role="button">Add Publisher</a>
+          <a class="btn btn-success" href="{{route('user.create')}}" role="button">Add User</a>
         </div>
         
       </div>
@@ -28,30 +28,26 @@
         <tr>
           <th class="col item">Id</th>
           <th class="col item">Name</th>
-          <th class="col item">Phone</th>
           <th class="col item">Email</th>
-          <th class="col item">Document</th>
           <th class="col item">Status</th>
           <th class="col item">Actions</th>
         </tr>
       </thead>
 
       <tbody>
-        @foreach($publishers as $publisher)
+        @foreach($users as $user)
             <tr>
-              <td>{{ $publisher->id }}</td>
-              <td>{{ $publisher->name }}</td>
-              <td>{{ $publisher->phone }}</td>
-              <td>{{ $publisher->email }}</td>
-              <td>{{ $publisher->document }}</td>
-                @if( $publisher->status === 1)
+              <td>{{ $user->id }}</td>
+              <td>{{ $user->name }}</td>
+              <td>{{ $user->email }}</td>
+                @if( $user->status === 1)
                     <td> Active </td>
                 @else
                     <td> Disactive</td>
                 @endif
               <td>
-                <a class="btn btn-outline-success" href="{{ route('publisher.edit', ['publisher' => $publisher])}}" role="button">Edit Publisher</a>
-                <a class="btn btn-success" href="{{ route('publisher.show', ['publisher' => $publisher])}}" role="button">Details</a>
+                <a class="btn btn-outline-success" href="{{ route('user.edit', ['user' => $user])}}" role="button">Edit user</a>
+                <a class="btn btn-success" href="{{ route('user.show', ['user' => $user])}}" role="button">Details</a>
               </td>
               </tr>
         @endforeach

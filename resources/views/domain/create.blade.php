@@ -4,13 +4,15 @@
 
 @section('content')
 
-<div class="container tabela">
+@include('layout._partials.navbar')
+
+<div class= "container tabela">
     <div class="container text-center">
         <div class="opcoes">
             Domain Add
-        <div>   
+        </div>
 
-        <form method= "post" action="{{ route('domain.store')}}" >
+        <form method="post" action="{{ route('publisher.store')}}">
             @csrf
             <div class="row">
 
@@ -41,22 +43,22 @@
                 </div>
 
                 <div class="row mb-2">
-                    <label for="nome" class="col dado">Status:</label>
+                    <label for="status" class="col dado">Status:</label>
                     <div class="col-sm-10">
                         <select class="form-select" name="status">
                             <option> -- Select Status -- </option>
                             <option value="1"> Active </option>
                             <option value="2"> Disable </option>  
                         </select>
+                        {{ $errors->has('status') ? $errors->first('status') : ''}}
                     </div>
                 </div>
-            </div>
-            <a class="btn btn-primary" href="{{route('domain.index')}}" role="button">Return</a>
+            </div>       
+            <a class="btn btn-outline-success" href="{{route('domain.index')}}" role="button">Return</a>
             <button type="submit" class="btn btn-success" >Create</button>
         </form>
     </div>
 </div>
-
 
 @endsection
 

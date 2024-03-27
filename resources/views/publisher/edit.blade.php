@@ -65,17 +65,6 @@
                         </select>
                     </div>
                 </div>
-
-                <div class="row mb-4">
-                    <label for="nome" class="col dado">Role:</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" name="role_id">
-                            @foreach($roles as $role)
-                                <option value="{{ $role->id }}" > {{ $role->name}} </option> 
-                            @endforeach                         
-                        </select>
-                    </div>
-                </div>
             </div>
 
             <a class="btn btn-primary" href="{{route('publisher.index')}}" role="button">Return</a>

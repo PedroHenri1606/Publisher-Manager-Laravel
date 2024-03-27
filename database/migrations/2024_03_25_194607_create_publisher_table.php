@@ -18,11 +18,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('document');
             $table->string('password');
-            $table->unsignedBigInteger('role_id');
             $table->boolean('status');
             $table->timestamps();
-
-            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -30,11 +27,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-        Schema::table('publishers', function (Blueprint $table){
-            $table->dropForeign('publishers_role_id_foreign');
-        });
-        
+    {        
         Schema::dropIfExists('publishers');
     }
 };

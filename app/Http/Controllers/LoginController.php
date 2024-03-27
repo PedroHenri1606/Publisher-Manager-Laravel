@@ -38,16 +38,20 @@ class LoginController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
 
-        $user = new User();
-
+        $userLog = new User();
         $userLog = User::where('email', $email)->where('password',$password)->get()->first();
-
+        
         if(isset($userLog->name)){
             session_start();
             $_SESSION['name'] = $userLog->name;
             $_SESSION['email'] = $email;
 
-            return redirect()->route('publisher.index');
+            if($userLog->role_id == 1){
+                return redirect()->route('publisher.index');
+            } else if($userLog->role_id == 2){
+                return redirect()->route('publisher.index');
+            }
+
         } else {
             return redirect()->route('login', ['erro' => 1]);
         }

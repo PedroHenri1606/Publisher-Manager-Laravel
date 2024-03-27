@@ -23,14 +23,13 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Email</th>
-          <th scope="col">Document</th>
-          <th scope="col">Role</th>
-          <th scope="col">Status</th>
-          <th scope="col">Actions</th>
+          <th class="col item">Id</th>
+          <th class="col item">Name</th>
+          <th class="col item">Phone</th>
+          <th class="col item">Email</th>
+          <th class="col item">Document</th>
+          <th class="col item">Status</th>
+          <th class="col item">Actions</th>
         </tr>
       </thead>
 
@@ -42,7 +41,6 @@
               <td>{{ $publisher->phone }}</td>
               <td>{{ $publisher->email }}</td>
               <td>{{ $publisher->document }}</td>
-              <td>{{ $publisher->role->name }}</td>
                 @if( $publisher->status === 1)
                     <td> Active </td>
                 @else

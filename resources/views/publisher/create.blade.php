@@ -65,18 +65,6 @@
                         {{ $errors->has('status') ? $errors->first('status') : ''}}
                     </div>
                 </div>
-
-                <div class="row mb-4">
-                    <label for="role_id" class="col dado">Role:</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" name="role_id">
-                            @foreach($roles as $role)
-                                <option value="{{ $role->id }}" > {{ $role->name}} </option> 
-                            @endforeach                         
-                        </select>
-                        {{ $errors->has('role_id') ? $errors->first('role_id') : ''}}
-                    </div>
-                </div>
             </div>       
             <a class="btn btn-primary" href="{{route('publisher.index')}}" role="button">Return</a>
             <button type="submit" class="btn btn-success" >Create</button>

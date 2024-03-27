@@ -64,13 +64,6 @@
                         </div>
                     </div>
 
-                    <div class="row mb-4">
-                        <label for="nome" class="col dado">Role:</label>
-                        <div class="col-sm-10">
-                          <select class="form-select">
-                            <option selected > {{ $publisher->role->name}} </option>                          
-                          </select>
-                    </div>
                 </div>
             </fieldset>
         </form>
@@ -83,11 +76,11 @@
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">Id</th>
-                <th scope="col">URI</th>
-                <th scope="col">Publisher</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+                <th class="col item">Id</th>
+                <th class="col item">URI</th>
+                <th class="col item">Publisher</th>
+                <th class="col item">Status</th>
+                <th class="col item">Actions</th>
                 </tr>
             </thead>
             <tbody>

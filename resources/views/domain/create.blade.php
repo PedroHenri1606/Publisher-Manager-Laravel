@@ -34,9 +34,9 @@
                 </div>
 
                 <div class="row mb-2">
-                <label for="ravshare" class="form-label col dado">Ravshare:</label>
+                    <label for="ravshare" class="col dado">Ravshare:</label>
                     <div class="col-sm-10">
-                        <input type="range" class="form-range" min="0" max="100" id="ravshare" value="{{ $domain->ravshare ?? old('ravshare')}}" name="ravshare">
+                        <input type="number" value="{{ $domain->ravshare ?? old('ravshare')}}" max="100" name="ravshare" class="form-control " placeholder="Ravshare">
                     </div>
                 </div>
 

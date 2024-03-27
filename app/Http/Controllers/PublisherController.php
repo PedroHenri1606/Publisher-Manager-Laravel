@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Domain;
 use App\Models\Publisher;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller
@@ -15,6 +16,7 @@ class PublisherController extends Controller
     public function index()
     {
         $publishers = Publisher::all();
+
         return view('publisher.index', ['publishers' => $publishers]);
     }
 
@@ -91,7 +93,7 @@ class PublisherController extends Controller
     public function update(Request $request, Publisher $publisher)
     {
         $validations = [
-            'name' => 'required|min:3:|max:50',
+            'name' => 'required|min:3|max:50',
             'phone' => 'required|max:15',
             'email' => 'email',
             'document' => 'required|max:20',

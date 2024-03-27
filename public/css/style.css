@@ -82,3 +82,36 @@ button{
     width: 20vw;
     height: 40vh;
 }
+
+.item{
+    color: #000000b7;
+}
+
+
+
+
+
+.navbar{
+    width: 100vw;
+    height: 10vh;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 30px;
+ }
+
+ .item-nav{
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+ }
+
+ h2{
+   text-align: center;
+ }
+
+.dropdown-menu{
+    --bs-border-width: 0px;
+}
+    

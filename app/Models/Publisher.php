@@ -9,16 +9,15 @@ class Publisher extends Model
 {
     use HasFactory;
 
+    protected $table = "publishers";
+
     protected $fillable = [
         'name',
         'phone',
         'email',
         'document',
         'password',
+        'role_id',
         'status',
     ];
-
-    public function domains(){
-        return $this->hasMany(Domain::class);
-    }
 }

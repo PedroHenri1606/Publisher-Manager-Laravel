@@ -4,19 +4,17 @@ use App\Http\Controllers\DomainController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\LogAccessMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-
-Route::middleware(LogAccessMiddleware::class)->group(function () {
     Route::get('/{erro?}', [LoginController::class,'index'])->name('login');
     Route::post('/', [LoginController::class,'authentication'])->name('login');
-});
+    Route::get('/register', [UserController::class,'create'])->name('login.create');
+
 
 //for more information about rotues, use the command: php artisan route:list
 //Passar o parametro de id do usuario autenticado em todas as rotas para evita bugs
-Route::middleware('authentication')->prefix('/system')->group(function(){
+Route::middleware('auth')->prefix('/system')->group(function(){
     
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
     Route::post('/publisher', [PublisherController::class, 'store'])->name('publisher.store');
@@ -56,5 +54,3 @@ Route::middleware('authentication')->prefix('/system')->group(function(){
 
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 });
-
-

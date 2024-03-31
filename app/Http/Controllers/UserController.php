@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      */
@@ -22,14 +23,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('user.create', ['roles' => $roles]);
+
+        return view('user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $validations = [
             'name' => 'required|min:3|max:50',
@@ -53,7 +54,10 @@ class UserController extends Controller
 
         $request->validate($validations, $feedbacks);
 
-        $user = User::create($request->all());
+        $user = $request->all();
+        $user['password'] = bcrypt($request->password);
+        $user = User::create($user);
+        Auth::login($user);
 
         return redirect()->route('user.index');
     }
@@ -71,8 +75,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
-        return view('user.edit', ['user' => $user, 'roles' => $roles]);
+        return view('user.edit', ['user' => $user]);
     }
 
     /**

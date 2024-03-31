@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Domain;
 use App\Models\Publisher;
 use App\Models\Role;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller
@@ -25,7 +24,8 @@ class PublisherController extends Controller
      */
     public function create(Request $request)
     {
-        return view('publisher.create');
+        $roles = Role::all();
+        return view('publisher.create',['roles' => $roles]);
     }
 
     /**

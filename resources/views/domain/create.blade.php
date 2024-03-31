@@ -12,7 +12,7 @@
             Domain Add
         </div>
 
-        <form method="post" action="{{ route('publisher.store')}}">
+        <form method="post" action="{{ route('domain.store')}}">
             @csrf
             <div class="row">
 

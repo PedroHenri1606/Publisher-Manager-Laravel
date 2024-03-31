@@ -191,7 +191,10 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Defender' => \Artesaos\Defender\Facades\Defender::class,
+        'aliases' => [
+            // other Facades ommited
+            'Defender' => \Artesaos\Defender\Facades\Defender::class,
+        ],
     ])->toArray(),
 
 ];

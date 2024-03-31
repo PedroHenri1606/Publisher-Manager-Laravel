@@ -11,7 +11,7 @@ class CreateDefenderRolesTable extends Migration
     public function up()
     {
         Schema::create(config('defender.role_table', 'roles'), function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
         });

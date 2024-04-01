@@ -17,7 +17,6 @@ class Publisher extends Model
         'email',
         'document',
         'password',
-        'role_id',
-        'status',
+        'user_id',
     ];
 }

@@ -58,6 +58,7 @@ class UserController extends Controller
 
         $user = $request->all();
         $user['password'] = bcrypt($request->password);
+    
         
         $role = defender()->findRoleById($user['role_id']);
    

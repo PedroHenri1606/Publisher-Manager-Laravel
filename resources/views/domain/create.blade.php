@@ -23,6 +23,7 @@
                     </div>
                 </div>
 
+                @is('admin')
                 <div class="row mb-2">
                     <label for="publisher_id" class="col dado">Publisher:</label>
                     <div class="col-sm-10">
@@ -34,6 +35,7 @@
                         </select>
                     </div>
                 </div>
+                @endis
 
                 <div class="row mb-2">
                     <label for="ravshare" class="col dado">Ravshare:</label>

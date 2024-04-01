@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Domain;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DomainController extends Controller
 {
@@ -14,6 +15,18 @@ class DomainController extends Controller
     public function index()
     {
         $domains = Domain::all();
+
+        return view('domain.index', ['domains' => $domains]);
+    }
+
+    public function listarPorPublisher(){
+        
+        if(Auth::check()){
+            $publisher = Auth::user();
+
+            $publisher = Publisher::where('email', $publisher->email)->first();
+            $domains = Domain::where('publisher_id', $publisher->id)->get();
+        }
 
         return view('domain.index', ['domains' => $domains]);
     }
@@ -44,8 +57,26 @@ class DomainController extends Controller
 
         $request->validate($validations, $feedbacks);
 
-        $domain = Domain::create($request->all());
+        $domain = new Domain();
+        $domain->domain = $request->domain;
+        $domain->ravshare = $request->ravshare;~
+        $domain->status = $request->status;
 
+        if($domain->publisher_id == ''){
+            if(Auth::check()){
+                $publisher = Auth::user();
+
+                $publisher = Publisher::where('email', $publisher->email)->first();
+                $domain['publisher_id'] = $publisher->id;
+                
+            }
+
+        } else {
+            $domain->publisher_id = $request->publisher->id;
+        } 
+
+        $domain->save();
+        
         return redirect()->route('domain.index');
     }
 

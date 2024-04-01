@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Domain;
 use App\Models\Publisher;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller
@@ -31,7 +32,7 @@ class PublisherController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Publisher $publisher)
     {
         $validations = [
             'name'     => 'required|min:3|max:50',
@@ -60,8 +61,26 @@ class PublisherController extends Controller
         ];
         
         $request->validate($validations, $feedbacks);
+        
+        $user = new User;
+        $user->name = $request->name;
+        $user->email =  $request->email;
+        $user->password = bcrypt($request->password);
+        $user->status = true;
+        $user->save();
+        
+        $role = defender()->findRole('publisher');
+        $user->attachRole($role);
+        
+        $usuarioPublisher = User::where('email', $user->email)->first();
 
-        $publisher = Publisher::create($request->all());
+        $publisher->name = $request->name;
+        $publisher->phone = $request->phone;
+        $publisher->email = $request->email;
+        $publisher->document = $request->document;
+        $publisher['password'] = bcrypt($request->password);
+        $publisher['user_id'] = $usuarioPublisher->id; 
+        $publisher->save();
 
         return redirect()->route('publisher.index');
     }
@@ -117,6 +136,7 @@ class PublisherController extends Controller
         ];
 
         $request->validate($validations, $feedbacks);
+        $publisher['password'] = bcrypt($request->password);
 
         $publisher->update($request->all());
 

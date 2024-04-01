@@ -31,7 +31,6 @@
           <th class="col item">Phone</th>
           <th class="col item">Email</th>
           <th class="col item">Document</th>
-          <th class="col item">Status</th>
           <th class="col item">Actions</th>
         </tr>
       </thead>
@@ -44,11 +43,6 @@
               <td>{{ $publisher->phone }}</td>
               <td>{{ $publisher->email }}</td>
               <td>{{ $publisher->document }}</td>
-                @if( $publisher->status === 1)
-                    <td> Active </td>
-                @else
-                    <td> Disactive</td>
-                @endif
               <td>
                 <a class="btn btn-outline-success" href="{{ route('publisher.edit', ['publisher' => $publisher])}}" role="button">Edit Publisher</a>
                 <a class="btn btn-success" href="{{ route('publisher.show', ['publisher' => $publisher])}}" role="button">Details</a>

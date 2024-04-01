@@ -18,7 +18,7 @@
         <div class="col mt-5">
           <a class="btn btn-success" href="{{route('domain.create')}}" role="button">Add Domain</a>
         </div>
-
+  
       </div>
     </div>
 
@@ -27,7 +27,9 @@
         <tr>
           <th class="col item">Id</th>
           <th class="col item">URI</th>
+          @is('admin')
           <th class="col item">Publisher</th>
+          @endis
           <th class="col item">Ravshare</th>
           <th class="col item">Status</th>
           <th class="col item">Actions</th>
@@ -38,7 +40,9 @@
               <tr>
                 <td>{{ $domain->id }}</td>
                 <td>{{ $domain->domain }}</td>
+                @is('admin')
                 <td>{{ $domain->publisher->name }}</td>
+                @endis
                 <td>{{ $domain->ravshare }}%</td>
                   @if( $domain->status === 1)
                       <td> Active </td>

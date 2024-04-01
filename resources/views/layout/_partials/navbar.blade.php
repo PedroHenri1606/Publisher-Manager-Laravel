@@ -15,13 +15,23 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             
+            @is('admin')
             <li class="nav-item">
               <a class="item-nav " aria-current="page" href="{{route('publisher.index')}}">Publishers</a>
             </li>
+            @endis
           
+            @is('publisher')
             <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
+              <a class="item-nav" aria-current="page" href="{{route('domain.publisher.index')}}">Domains</a>
             </li>
+            @endis
+
+            @is('admin')
+            <li class="nav-item">
+              <a class="item-nav" aria-current="page" href="{{route('domain.admin.index')}}">Domains</a>
+            </li>
+            @endis
             
             @is('admin')
               <li class="nav-item">
@@ -29,7 +39,7 @@
               </li>
             @endis
 
-            @is('publisher')
+            @is(['publisher', 'admin'])
               <li class="nav-item">
                 <a class="item-nav" aria-current="page" href="">Reports</a>
               </li>

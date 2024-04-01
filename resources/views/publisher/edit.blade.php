@@ -49,24 +49,6 @@
                         <input type="number" value="{{ $publisher->phone ?? old('phone')}}" name="phone" class="form-control " placeholder="Phone">
                     </div>
                 </div>
-
-                <div class="row mb-2">
-                    <label for="nome" class="col dado">Status:</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" name="status">
-                            <option value="{{$publisher->status}}"> 
-                                @if ($publisher->status === 1)
-                                    Active
-                                @else 
-                                    Disactive
-                                @endif
-                            </option>
-                            <option> -- Select Status -- </option>
-                            <option value="1"> Active </option>
-                            <option value="2"> Disable </option>  
-                        </select>
-                    </div>
-                </div>
             </div>
 
             <a class="btn btn-outline-success" href="{{route('publisher.index')}}" role="button">Return</a>

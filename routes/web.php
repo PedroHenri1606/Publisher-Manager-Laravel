@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 
 //for more information about rotues, use the command: php artisan route:list
-//Passar o parametro de id do usuario autenticado em todas as rotas para evita bugs
-Route::middleware('auth')->prefix('/system')->group(function(){
+Route::middleware(
+    [
+        'auth',
+        'needsRole:admin'
+    ]
+    )->prefix('/admin')->group(function(){
     
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
     Route::post('/publisher', [PublisherController::class, 'store'])->name('publisher.store');
@@ -53,4 +57,38 @@ Route::middleware('auth')->prefix('/system')->group(function(){
     Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+});
+
+Route::middleware(
+    [
+        'auth',
+        'needsRole:publisher'
+    ]
+    )->prefix('/publisher')->group(function(){
+    
+    Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
+    Route::post('/publisher', [PublisherController::class, 'store'])->name('publisher.store');
+
+    Route::get('/publisher/create', [PublisherController::class, 'create'])->name('publisher.create');
+    Route::get('/publisher/{publisher}', [PublisherController::class, 'show'])->name('publisher.show');
+
+    Route::get('/publisher/{publisher}/edit', [PublisherController::class, 'edit'])->name('publisher.edit');
+    Route::put('/publisher/{publisher}', [PublisherController::class, 'update'])->name('publisher.update');
+
+    Route::delete('/publisher/{publisher}', [PublisherController::class, 'destroy'])->name('publisher.destroy');
+
+
+    Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+
+
+    Route::get('/domain', [DomainController::class, 'index'])->name('domain.index');
+    Route::post('/domain', [DomainController::class, 'store'])->name('domain.store');
+
+    Route::get('/domain/create', [DomainController::class, 'create'])->name('domain.create');
+    Route::get('/domain/{domain}', [DomainController::class, 'show'])->name('domain.show');
+
+    Route::get('/domain/{domain}/edit', [DomainController::class, 'edit'])->name('domain.edit');
+    Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
+
+    Route::delete('/domain/{domain}', [DomainController::class, 'destroy'])->name('domain.destroy');
 });

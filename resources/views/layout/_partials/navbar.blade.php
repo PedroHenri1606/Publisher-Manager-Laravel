@@ -28,6 +28,12 @@
                 <a class="item-nav" aria-current="page" href="{{route('user.index')}}">Users</a>
               </li>
             @endis
+
+            @is('publisher')
+              <li class="nav-item">
+                <a class="item-nav" aria-current="page" href="">Reports</a>
+              </li>
+            @endis
           </ul>
         </div>
       </div>

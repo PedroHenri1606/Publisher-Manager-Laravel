@@ -37,7 +37,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
 
-            return redirect()->intended('system/publisher');
+            return redirect()->route('publisher');
         } else {
             return redirect()->route('login', ['erro' => 1]);
         }

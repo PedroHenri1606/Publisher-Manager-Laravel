@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
+use Artesaos\Defender\Defender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-
-        return view('user.create');
+        $roles = Role::all();
+        return view('user.create', ['roles' => $roles]);
     }
 
     /**
@@ -56,9 +58,22 @@ class UserController extends Controller
 
         $user = $request->all();
         $user['password'] = bcrypt($request->password);
+        
+        $role = defender()->findRoleById($user['role_id']);
+   
         $user = User::create($user);
-        Auth::login($user);
 
+        if($role->id == 1){
+            $user->attachRole($role);
+        }
+        if($role->id == 2){
+            $user->attachRole($role);
+            
+        }
+        if($role->id == 3){
+            $user->attachRole($role);
+        }
+    
         return redirect()->route('user.index');
     }
 
@@ -105,7 +120,8 @@ class UserController extends Controller
 
         $request->validate( $validations, $feedbacks);
 
-        $user->update($request->all());
+        $user = $request->all();
+        $user['password'] = bcrypt($request->password);
 
         return redirect()->route('user.index');
     }

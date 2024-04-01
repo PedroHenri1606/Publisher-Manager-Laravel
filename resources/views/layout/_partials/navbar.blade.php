@@ -23,16 +23,11 @@
               <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
             </li>
             
-            <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('user.index')}}">Users</a>
-            </li>
-            {{--
-            @if($user->role_id == 1)
-            <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Users</a>
-            </li>
-            @endif
-            --}}
+            @is('admin')
+              <li class="nav-item">
+                <a class="item-nav" aria-current="page" href="{{route('user.index')}}">Users</a>
+              </li>
+            @endis
           </ul>
         </div>
       </div>

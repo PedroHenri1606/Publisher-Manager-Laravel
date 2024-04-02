@@ -7,6 +7,7 @@ use App\Models\Publisher;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublisherController extends Controller
 {
@@ -18,6 +19,25 @@ class PublisherController extends Controller
         $publishers = Publisher::all();
 
         return view('publisher.index', ['publishers' => $publishers]);
+    }
+
+    public function find(Request $request)
+    {
+        //Verifica possui autenticação
+        if(Auth::check()){
+            //id do publisher que desejamos acessar 
+            $id = $request->input('id');
+                $publisher = Publisher::where('id', $id)->first();
+
+                //Se informar um valor invalido, retorna ao index 
+                if($publisher == null){
+                    $publisher = Publisher::all();
+                    return view('publisher.index', ['publishers' => $publisher]);
+                }
+         
+        }
+        return view ('publisher.edit', ['publisher' => $publisher]);
+
     }
 
     /**

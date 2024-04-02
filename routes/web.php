@@ -18,6 +18,8 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index')->middleware('needsRole:admin');
     Route::post('/publisher', [PublisherController::class, 'store'])->name('publisher.store')->middleware('needsRole:admin');
 
+    Route::post('/publisher/find', [PublisherController::class, 'find'])->name('publisher.find');
+
     Route::get('/publisher/create', [PublisherController::class, 'create'])->name('publisher.create')->middleware('needsRole:admin');
     Route::get('/publisher/{publisher}', [PublisherController::class, 'show'])->name('publisher.show')->middleware('needsRole:admin');
 

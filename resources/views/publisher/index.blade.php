@@ -15,6 +15,14 @@
           Publishers List
         </div>
 
+        <div class="col-4 mt-4">
+          <form method="POST" action="{{ route('publisher.find')}}">
+            @csrf
+            <input type="text" class="col-4 findInput" name="id" placeholder="Informe o Id">
+            <button class="col-4 btn btn-success " type="submit">Find</button>
+          <form>
+        </div>
+
         <div class="col mt-5">
           <a class="btn btn-success" href="{{route('publisher.create')}}" role="button">Add Publisher</a>
         </div>

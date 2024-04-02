@@ -23,13 +23,13 @@
           
             @is('publisher')
             <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('domain.publisher.index')}}">Domains</a>
+              <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
             </li>
             @endis
 
             @is('admin')
             <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('domain.admin.index')}}">Domains</a>
+              <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
             </li>
             @endis
             

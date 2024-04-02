@@ -14,21 +14,18 @@ class DomainController extends Controller
      */
     public function index()
     {
-        $domains = Domain::all();
-
-        return view('domain.index', ['domains' => $domains]);
-    }
-
-    public function listarPorPublisher(){
-        
         if(Auth::check()){
             $publisher = Auth::user();
 
-            $publisher = Publisher::where('email', $publisher->email)->first();
-            $domains = Domain::where('publisher_id', $publisher->id)->get();
-        }
+            if(Publisher::where('email', $publisher->email)->exists() == true){
+                $publisher = Publisher::where('email', $publisher->email)->first();
+                $domains = Domain::where('publisher_id', $publisher->id)->get();
 
-        return view('domain.index', ['domains' => $domains]);
+                return view('domain.index', ['domains' => $domains]);
+            }            
+                $domains = Domain::all();
+                return view('domain.index', ['domains' => $domains]);
+        }
     }
 
     /**

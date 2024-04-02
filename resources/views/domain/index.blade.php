@@ -12,7 +12,12 @@
     
       <div class="row align-items-start">
         <div class="col opcoes">
-          Domains List
+          @is('admin')
+            List of all domains
+          @endis
+          @is('publisher')
+            Your domains
+          @endis
         </div>
 
         <div class="col mt-5">
@@ -50,7 +55,7 @@
                       <td> Disactive</td>
                   @endif
                 <td>
-                  <a class="btn btn-outline-success" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Publisher</a>
+                  <a class="btn btn-outline-success" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Domain</a>
                   <a class="btn btn-success" href="{{ route('domain.show', ['domain' => $domain])}}" role="button">Details</a>
                 </td>
                 </tr>

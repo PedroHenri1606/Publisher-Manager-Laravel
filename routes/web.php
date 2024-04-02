@@ -29,8 +29,7 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
 
 
-    Route::get('/domain', [DomainController::class, 'index'])->name('domain.admin.index')->middleware('needsRole:admin');
-    Route::get('/domain', [DomainController::class, 'listarPorPublisher'])->name('domain.publisher.index')->middleware('needsRole:publisher');
+    Route::get('/domain', [DomainController::class, 'index'])->name('domain.index');
     Route::post('/domain', [DomainController::class, 'store'])->name('domain.store');
 
     Route::get('/domain/create', [DomainController::class, 'create'])->name('domain.create');

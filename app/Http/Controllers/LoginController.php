@@ -36,10 +36,8 @@ class LoginController extends Controller
       
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-
-            //corrigir aqui
-
-            return redirect()->route('domain.publisher.index');
+            
+            return redirect()->route('domain.index');
         } else {
             return redirect()->route('login', ['erro' => 1]);
         }

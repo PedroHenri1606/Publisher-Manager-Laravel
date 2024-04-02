@@ -22,6 +22,7 @@
                     </div>
                 </div>
 
+                @is('admin')
                 <div class="row mb-2">
                     <label for="publisher_id" class="col dado">Publisher:</label>
                     <div class="col-sm-10">
@@ -32,6 +33,7 @@
                         </select>
                     </div>
                 </div>
+                @endis
 
                 <div class="row mb-2">
                         <label for="ravshare" class="form-label col dado">Ravshare:</label>
@@ -44,8 +46,8 @@
                     <label for="nome" class="col dado">Status:</label>
                     <div class="col-sm-10">
                         <select class="form-select" name="status">
-                            <option value="{{$publisher->status}}"> 
-                                @if ($publisher->status === 1)
+                            <option value="{{$domain->status}}"> 
+                                @if ($domain->status === 1)
                                     Active
                                 @else 
                                     Disactive

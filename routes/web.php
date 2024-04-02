@@ -3,6 +3,7 @@
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::get('/domain', [DomainController::class, 'index'])->name('domain.index');
     Route::post('/domain', [DomainController::class, 'store'])->name('domain.store');
 
+    Route::post('/domain/find', [DomainController::class, 'find'])->name('domain.find');
+
     Route::get('/domain/create', [DomainController::class, 'create'])->name('domain.create');
     Route::get('/domain/{domain}', [DomainController::class, 'show'])->name('domain.show');
 
@@ -39,6 +42,9 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
 
     Route::delete('/domain/{domain}', [DomainController::class, 'destroy'])->name('domain.destroy');
+
+    Route::get('/reports', [ReportsController::class, 'reports'])->name('reports.index');
+
 
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index')->middleware('needsRole:admin');

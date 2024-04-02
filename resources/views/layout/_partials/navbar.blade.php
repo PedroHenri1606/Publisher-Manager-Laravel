@@ -41,7 +41,7 @@
 
             @is(['publisher', 'admin'])
               <li class="nav-item">
-                <a class="item-nav" aria-current="page" href="">Reports</a>
+                <a class="item-nav" aria-current="page" href="{{route('reports.index')}}">Reports</a>
               </li>
             @endis
           </ul>

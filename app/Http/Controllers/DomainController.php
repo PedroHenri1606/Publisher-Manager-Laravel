@@ -28,6 +28,39 @@ class DomainController extends Controller
         }
     }
 
+    public function find(Request $request)
+    {
+        //Verifica possui autenticação
+        if(Auth::check()){
+            //id do domain que desejamos acessar 
+            $id = $request->input('id');
+
+            //Recebo os dados de autenticação do usuario
+            $user = Auth::user();
+
+            //Se o usuario logado for um publisher, ira apresentar somente os domains que ele cadastrou / Ele tera acesso somente aos dominios dele também
+            if(Publisher::where('email', $user->email)->exists() == true){
+                //Busco no banco pelo Eloquent os dados do Publisher pelo Usuario de autenticação
+                $publishers = Publisher::where('email', $user->email)->first();
+                //Domain recebe uma collection com o dominio que possue o mesmo id e que tem o mesmo publisher_id do usuario autenticado 
+                $domain = Domain::where('id', $id)->where('publisher_id',$publishers->id)->get()->first();
+
+                //Se informar um valor invalido, retorna ao index 
+                if($domain == null){
+                    $domains = Domain::where('publisher_id', $publishers->id)->get();
+                    return view('domain.index', ['domains' => $domains]);
+                }
+
+            //Se o usuario for um admin, ira apresentar todos os dominios cadastrados na aplicação / Ele tera acesso a todos os dominios
+            } else {
+                $publishers = Publisher::all();
+                $domain = Domain::where('id', $id)->get()->first();
+
+            }
+        } 
+        return view ('domain.edit', ['domain' => $domain, 'publishers' => $publishers]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

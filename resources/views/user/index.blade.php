@@ -31,11 +31,21 @@
     <table class="table mt-2">
       <thead>
         <tr>
-          <th class="col item">Id</th>
-          <th class="col item">Name</th>
-          <th class="col item">Email</th>
-          <th class="col item">Status</th>
-          <th class="col item">Actions</th>
+          <th class="col item">
+            <a class="item" href="{{route('user.orderById')}}" role="button">Id</a>
+          </th>
+          <th class="col item">
+            <a class="item" href="{{route('user.orderByName')}}" role="button">Name</a>
+          </th>
+          <th class="col item">
+            <a class="item" href="{{route('user.orderByEmail')}}" role="button">Email</a>
+          </th>
+          <th class="col item">
+            <a class="item" href="{{route('user.orderByStatus')}}" role="button">Status</a>
+          </th>
+          <th class="col item">
+            <a class="item" href="{{route('user.index')}}" role="button">Actions</a>
+          </th>
         </tr>
       </thead>
 

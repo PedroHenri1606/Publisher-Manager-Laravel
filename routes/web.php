@@ -66,6 +66,11 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
 
     Route::post('/user/find', [UserController::class, 'find'])->name('user.find');
 
+    Route::get('/user/orderById', [UserController::class, 'orderById'])->name('user.orderById');
+    Route::get('/user/orderByName', [UserController::class, 'orderByName'])->name('user.orderByName');
+    Route::get('/user/orderByEmail', [UserController::class, 'orderByEmail'])->name('user.orderByEmail');
+    Route::get('/user/orderByStatus', [UserController::class, 'orderByStatus'])->name('user.orderByStatus');
+
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create')->middleware('needsRole:admin');
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->middleware('needsRole:admin');
 

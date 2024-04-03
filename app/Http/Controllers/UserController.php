@@ -39,6 +39,31 @@ class UserController extends Controller
 
     }
 
+    public function orderById()
+    {
+        $users = User::orderBy('id','desc')->paginate(10);
+        return view('user.index', ['users' => $users]);
+    }
+
+    public function orderByName()
+    {
+        $users = User::orderBy('name','desc')->paginate(10);
+        return view('user.index', ['users' => $users]);
+    }
+
+    public function orderByEmail()
+    {
+        $users = User::orderBy('email','desc')->paginate(10);
+        return view('user.index', ['users' => $users]);
+    }
+    
+    public function orderByStatus()
+    {
+        $users = User::orderBy('status','desc')->paginate(10);
+        return view('user.index', ['users' => $users]);
+    }  
+
+
     /**
      * Show the form for creating a new resource.
      */

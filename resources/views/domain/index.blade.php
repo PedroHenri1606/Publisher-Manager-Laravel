@@ -34,14 +34,31 @@
     <table class="table mt-2">
       <thead>
         <tr>
-          <th class="col item">Id</th>
-          <th class="col item">URI</th>
+          <th class="col">
+            <a class="item" href="{{route('domain.orderById')}}" role="button">Id</a>
+          </th>
+
+          <th class="col">
+            <a class="item" href="{{route('domain.orderByUri')}}" role="button">URI</a>
+          </th>
+
           @is('admin')
-          <th class="col item">Publisher</th>
+          <th class="col">
+            <a class="item" href="{{route('domain.orderByPublisher')}}" role="button">Publisher</a>
+          </th>
           @endis
-          <th class="col item">Ravshare</th>
-          <th class="col item">Status</th>
-          <th class="col item">Actions</th>
+
+          <th class="col">
+            <a class="item" href="{{route('domain.orderByRavshare')}}" role="button">Ravshare</a>
+          </th>
+
+          <th class="col">
+            <a class="item" href="{{route('domain.orderByStatus')}}" role="button">Status</a>
+          </th>
+          
+          <th class="col">
+            <a class="item" href="{{route('domain.index')}}" role="button">Actions</a>
+          </th>
         </tr>
       </thead>
       <tbody>

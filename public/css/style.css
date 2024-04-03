@@ -76,12 +76,10 @@ button{
 }
 
 .item{
-    color: #000000b7;
+    text-decoration: none;
+    font-size: bolder;
+    color: black;
 }
-
-
-
-
 
 .navbar{
     width: 100vw;

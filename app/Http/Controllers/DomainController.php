@@ -17,12 +17,14 @@ class DomainController extends Controller
         if(Auth::check()){
             $publisher = Auth::user();
 
+            //se for publisher
             if(Publisher::where('email', $publisher->email)->exists() == true){
                 $publisher = Publisher::where('email', $publisher->email)->first();
                 $domains = Domain::where('publisher_id', $publisher->id)->paginate(10);
 
                 return view('domain.index', ['domains' => $domains]);
-            }            
+            }       
+            //se for admin     
                 $domains = Domain::paginate(10);
                 return view('domain.index', ['domains' => $domains]);
         }
@@ -64,6 +66,91 @@ class DomainController extends Controller
             }
         } 
         return view ('domain.edit', ['domain' => $domain, 'publishers' => $publishers]);
+    }
+
+    public function orderById(){
+      
+        $publisher = Auth::user();
+
+        //se for publisher
+        if(Publisher::where('email', $publisher->email)->exists() == true){
+            $publisher = Publisher::where('email', $publisher->email)->first();
+
+            $domains = Domain::orderBy('id','desc')->where('publisher_id', $publisher->id)->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        
+        }  else {
+            $domains = Domain::orderBy('id','desc')->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        }    
+    }
+
+    public function orderByUri(){
+        
+        $publisher = Auth::user();
+
+        //se for publisher
+        if(Publisher::where('email', $publisher->email)->exists() == true){
+            $publisher = Publisher::where('email', $publisher->email)->first();
+
+            $domains = Domain::orderBy('domain','desc')->where('publisher_id', $publisher->id)->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        
+        }  else {
+            $domains = Domain::orderBy('domain','desc')->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        }    
+    }
+
+    public function orderByPublisher(){
+        
+        $publisher = Auth::user();
+
+        //se for publisher
+        if(Publisher::where('email', $publisher->email)->exists() == true){
+            $publisher = Publisher::where('email', $publisher->email)->first();
+
+            $domains = Domain::orderBy('publisher_id','desc')->where('publisher_id', $publisher->id)->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        
+        }  else {
+            $domains = Domain::orderBy('publisher_id','desc')->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        }    
+    }
+
+    public function orderByRavshare(){
+        
+        $publisher = Auth::user();
+
+        //se for publisher
+        if(Publisher::where('email', $publisher->email)->exists() == true){
+            $publisher = Publisher::where('email', $publisher->email)->first();
+
+            $domains = Domain::orderBy('ravshare','desc')->where('publisher_id', $publisher->id)->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        
+        }  else {
+            $domains = Domain::orderBy('ravshare','desc')->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        }    
+    }
+
+    public function orderByStatus(){
+        
+        $publisher = Auth::user();
+
+        //se for publisher
+        if(Publisher::where('email', $publisher->email)->exists() == true){
+            $publisher = Publisher::where('email', $publisher->email)->first();
+
+            $domains = Domain::orderBy('status','desc')->where('publisher_id', $publisher->id)->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        
+        }  else {
+            $domains = Domain::orderBy('status','desc')->paginate(10);
+            return view('domain.index', ['domains' => $domains]);
+        }    
     }
 
     /**

@@ -19,7 +19,7 @@
       </div>
 
       <div class="col-auto align-self-center">
-      <input type="text" class="findInput" name="id" placeholder="Enter the ID">
+      <input type="text" class="findInput" name="input" placeholder="Enter the ID or Domain">
       </div>
       
       <div class="col-auto align-self-center">
@@ -71,9 +71,9 @@
                 @endis
                 <td>{{ $domain->ravshare }}%</td>
                   @if( $domain->status === 1)
-                      <td> Active </td>
+                      <td class="active"> Active </td>
                   @else
-                      <td> Disactive</td>
+                      <td class="disactive"> Disactive</td>
                   @endif
                 <td>
                   <a class="btn btn-outline-success" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Domain</a>

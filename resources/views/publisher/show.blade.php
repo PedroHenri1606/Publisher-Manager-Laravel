@@ -34,7 +34,7 @@
                   <div class="row mb-2">
                         <label for="nome" class="col dado">Password:</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{ $publisher->password ?? old('password')}}" name="document" class="form-control disable" placeholder="Password">
+                            <input type="password" value="{{ $publisher->password ?? old('password')}}" name="document" class="form-control disable" placeholder="Password">
                         </div>
                     </div>
 
@@ -76,23 +76,38 @@
                 Domains from this publisher
             </div>
 
-        <div class="container  border-light shadow text-center">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="col item">Id</th>
-                        <th class="col item">URI</th>
-                        <th class="col item">Publisher</th>
-                        <th class="col item">Status</th>
-                        <th class="col item">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="container  border-light shadow text-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col">
+                                <a class="item" href="{{route('domain.orderById')}}" role="button">Id</a>
+                            </th>
+
+                            <th class="col">
+                                <a class="item" href="{{route('domain.orderByUri')}}" role="button">URI</a>
+                            </th>
+
+
+                            <th class="col">
+                                <a class="item" href="{{route('domain.orderByRavshare')}}" role="button">Ravshare</a>
+                            </th>
+
+                            <th class="col">
+                                <a class="item" href="{{route('domain.orderByStatus')}}" role="button">Status</a>
+                            </th>
+                            
+                            <th class="col">
+                                <a class="item" href="{{route('domain.index')}}" role="button">Actions</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @foreach($domains as $domain)
                         <tr>
                             <td>{{ $domain->id }}</td>
                             <td>{{ $domain->domain }}</td>
-                            <td>{{ $domain->publisher->name }}</td>
+                            <td>{{ $domain->ravshare}}%</td>
                             @if( $domain->status === 1)
                                 <td> Active </td>
                             @else
@@ -104,9 +119,9 @@
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
 
     <div class="container text-center">
         <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 

@@ -35,7 +35,7 @@ class DomainController extends Controller
         //Verifica possui autenticação
         if(Auth::check()){
             //id do domain que desejamos acessar 
-            $id = $request->input('id');
+            $input = $request->input('id');
 
             //Recebo os dados de autenticação do usuario
             $user = Auth::user();
@@ -45,7 +45,7 @@ class DomainController extends Controller
                 //Busco no banco pelo Eloquent os dados do Publisher pelo Usuario de autenticação
                 $publishers = Publisher::where('email', $user->email)->first();
                 //Domain recebe uma collection com o dominio que possue o mesmo id e que tem o mesmo publisher_id do usuario autenticado 
-                $domain = Domain::where('id', $id)->where('publisher_id',$publishers->id)->get()->first();
+                $domain = Domain::where('id', $input)->orWhere('domain', $input)->where('publisher_id',$publishers->id)->get()->first();
 
                 //Se informar um valor invalido, retorna ao index 
                 if($domain == null){
@@ -56,7 +56,7 @@ class DomainController extends Controller
             //Se o usuario for um admin, ira apresentar todos os dominios cadastrados na aplicação / Ele tera acesso a todos os dominios
             } else {
                 $publishers = Publisher::all();
-                $domain = Domain::where('id', $id)->get()->first();
+                $domain = Domain::where('id', $input)->orWhere('domain', $input)->get()->first();
 
                 if($domain == null){
                     $domains = Domain::paginate(10);

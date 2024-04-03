@@ -52,6 +52,8 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::get('/user', [UserController::class, 'index'])->name('user.index')->middleware('needsRole:admin');
     Route::post('/user', [UserController::class, 'store'])->name('user.store')->middleware('needsRole:admin');
 
+    Route::post('/user/find', [UserController::class, 'find'])->name('user.find');
+
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create')->middleware('needsRole:admin');
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->middleware('needsRole:admin');
 

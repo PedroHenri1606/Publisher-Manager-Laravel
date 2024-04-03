@@ -7,18 +7,18 @@
 @include('layout._partials.navbar')
 
 
-<div class= "container tabela">
-    <div class="container text-center">
+<div class= "container tabela border-light shadow text-center">
+    <div class="container">
         <div class="opcoes">
             Domain Show
         </div>
 
         <form>
             <fieldset disabled>
-
                 <div class="row">
+
                     <div class="row mb-2">
-                            <label for="name" class="col dado">Domain:</label>
+                        <label for="name" class="col dado">Domain:</label>
                         <div class="col-sm-10">
                             <input type="text" value="{{ $domain->domain ?? old('name')}}" name="domain" class="form-control " placeholder="Domain">
                         </div>
@@ -53,15 +53,14 @@
     </div>
 
 
-    <div class="container text-center">
+    <div class="container text-center mt-4">
         <form id="form_{{$domain->id}}" method="post" action ="{{ route('domain.destroy', ['domain' => $domain->id]) }}"> 
             <tr>
                 <td>
                     <a class="btn btn-outline-success" href="{{ route('domain.index')}}" role="button">Return</a>
                     @method('DELETE')
                     @csrf
-                    <!-- <button type="submit"> Excluir </button> -->
-                    <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$domain->id}}').submit()">Delete Domain </a>
+                    <a class="btn btn-success" href="#" onclick="document.getElementById('form_{{$domain->id}}').submit()">Delete Domain </a>
                 </td>
             <tr>
         </form>

@@ -6,13 +6,16 @@
 
 @include('layout._partials.navbar')
 
-<form method= "post" action="{{ route('domain.update', ['domain' => $domain->id])}}" >
-    @csrf
-    @method('PUT')
 
-    <div class="container tabela">
-        <div class="container text-center">
-    
+<div class= "container tabela border-light shadow text-center">
+    <div class="container">
+        <div class="opcoes">
+            Domain Edit
+        </div>
+
+        <form method= "post" action="{{ route('domain.update', ['domain' => $domain->id])}}" >
+        @csrf
+        @method('PUT')
             <div class="row">
 
                 <div class="row mb-2">
@@ -60,11 +63,13 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-outline-success" href="{{route('domain.index')}}" role="button">Return</a>
-            <button type="submit" class="btn btn-success" >Edit</button>
-        </div>
+            <div class="mt-4">
+                <a class="btn btn-outline-success" href="{{route('domain.index')}}" role="button">Return</a>
+                <button type="submit" class="btn btn-success" >Edit</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 
 @endsection

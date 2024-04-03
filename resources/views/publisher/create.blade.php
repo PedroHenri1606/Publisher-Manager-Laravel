@@ -7,16 +7,15 @@
 @include('layout._partials.navbar')
 
 
-<div class= "container tabela">
-    <div class="container text-center">
+<div class= "container tabela border-light shadow text-center">
+    <div class="container">
         <div class="opcoes">
             Publisher Add
         </div>
 
         <form method="post" action="{{ route('publisher.store')}}">
             @csrf
-            <div class="row" >
-
+            <div class="row">
                 <div class="row mb-2">
                     <label for="name" class="col dado">Name:</label>
                     <div class="col-sm-10">
@@ -56,13 +55,14 @@
                         {{ $errors->has('phone') ? $errors->first('phone') : ''}}
                     </div>
                 </div>
-            </div>       
-            <a class="btn btn-outline-success" href="{{route('publisher.index')}}" role="button">Return</a>
-            <button type="submit" class="btn btn-success" >Create</button>
+            </div>
+            <div class="mt-4">    
+                <a class="btn btn-outline-success" href="{{route('publisher.index')}}" role="button">Return</a>
+                <button type="submit" class="btn btn-success" >Create</button>
+            </div>
         </form>
     </div>
 </div>
-
 
 @endsection
 

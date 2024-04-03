@@ -6,32 +6,28 @@
 
 @include('layout._partials.navbar')
 
-
-  <div class="container tabela">
-    <div class="container text-center">
-    
-      <div class="row align-items-start">
-        <div class="col opcoes">
-          Publishers List
-        </div>
-
-        <div class="col-4 mt-4">
-          <form method="POST" action="{{ route('publisher.find')}}">
-            @csrf
-            <input type="text" class="col-4 findInput" name="id" placeholder="Informe o Id">
-            <button class="col-4 btn btn-success " type="submit">Find</button>
-          <form>
-        </div>
-
-        <div class="col mt-5">
-          <a class="btn btn-success" href="{{route('publisher.create')}}" role="button">Add Publisher</a>
-        </div>
-        
+<div class="container tabela border-light shadow text-center">
+  <div class="container">
+    <form method="POST" action="{{route ('publisher.find')}}" class="row justify-content-end">     
+      @csrf
+      <div class="col-auto col-md-4 opcoes">
+        Publisher List
       </div>
-    </div>
 
+      <div class="col-auto align-self-center">
+      <input type="text" class="findInput" name="id" placeholder="Enter the ID">
+      </div>
+      
+      <div class="col-auto align-self-center">
+        <button class="btn btn-success " type="submit">Find</button>
+      </div>
 
-    <table class="table">
+      <div class="col-auto col-md-2 align-self-center">
+        <a class="btn btn-success" href="{{route('publisher.create')}}" role="button">Add Domain</a>
+      </div>
+    <form>
+
+    <table class="table mt-2">
       <thead>
         <tr>
           <th class="col item">Id</th>
@@ -59,6 +55,7 @@
         @endforeach
       </tbody>
     </table>
+    {{ $publishers->onEachSide(0)->links()}}
   </div>
 </div>
 

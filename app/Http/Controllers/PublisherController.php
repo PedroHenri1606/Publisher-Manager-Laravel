@@ -16,7 +16,7 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers = Publisher::all();
+        $publishers = Publisher::paginate(10);
 
         return view('publisher.index', ['publishers' => $publishers]);
     }
@@ -31,7 +31,7 @@ class PublisherController extends Controller
 
                 //Se informar um valor invalido, retorna ao index 
                 if($publisher == null){
-                    $publisher = Publisher::all();
+                    $publisher = Publisher::paginate(10);
                     return view('publisher.index', ['publishers' => $publisher]);
                 }
          
@@ -59,7 +59,7 @@ class PublisherController extends Controller
             'phone'    => 'required|max:15',
             'email'    => 'email',
             'document' => 'required|max:20',
-            'password' => 'required|max:50',
+            'password' => 'required|max:100',
         ];
 
         $feedbacks = [
@@ -76,7 +76,7 @@ class PublisherController extends Controller
             'document.max' => 'Document must contain up to 20 characters',
 
             'password.required' => 'Password is a required field',
-            'password.max' => 'Password must contain up to 50 characters',
+            'password.max' => 'Password must contain up to 100 characters',
 
         ];
         
@@ -134,7 +134,7 @@ class PublisherController extends Controller
             'phone' => 'required|max:15',
             'email' => 'email',
             'document' => 'required|max:20',
-            'password' => 'required|max:50',
+            'password' => 'required|max:100',
         ];
 
         $feedbacks = [
@@ -151,7 +151,7 @@ class PublisherController extends Controller
             'document.max' => 'Document must contain up to 20 characters',
 
             'password.required' => 'Password is a required field',
-            'password.max' => 'Password must contain up to 50 characters',
+            'password.max' => 'Password must contain up to 100 characters',
 
         ];
 

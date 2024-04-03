@@ -7,8 +7,8 @@
 @include('layout._partials.navbar')
 
 
-<div class= "container tabela">
-    <div class="container text-center">
+<div class= "container  border-light shadow text-center">
+    <div class="container">
         <div class="opcoes">
             Publisher Show
         </div>
@@ -71,56 +71,56 @@
             </fieldset>
         </form>
 
+        
+            <div class="opcoes">
+                Domains from this publisher
+            </div>
 
-        <div class="opcoes">
-            Domains from this publisher
+        <div class="container  border-light shadow text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col item">Id</th>
+                        <th class="col item">URI</th>
+                        <th class="col item">Publisher</th>
+                        <th class="col item">Status</th>
+                        <th class="col item">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($domains as $domain)
+                        <tr>
+                            <td>{{ $domain->id }}</td>
+                            <td>{{ $domain->domain }}</td>
+                            <td>{{ $domain->publisher->name }}</td>
+                            @if( $domain->status === 1)
+                                <td> Active </td>
+                            @else
+                                <td> Disactive</td>
+                            @endif
+                            <td>
+                                <a class="btn btn-outline-success" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Publisher</a>
+                                <a class="btn btn-success" href="{{ route('domain.show', ['domain' => $domain])}}" role="button">Details</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                <th class="col item">Id</th>
-                <th class="col item">URI</th>
-                <th class="col item">Publisher</th>
-                <th class="col item">Status</th>
-                <th class="col item">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($domains as $domain)
-                    <tr>
-                        <td>{{ $domain->id }}</td>
-                        <td>{{ $domain->domain }}</td>
-                        <td>{{ $domain->publisher->name }}</td>
-                        @if( $domain->status === 1)
-                            <td> Active </td>
-                        @else
-                            <td> Disactive</td>
-                        @endif
-                        <td>
-                        <a class="btn btn-warning" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Publisher</a>
-                        <a class="btn btn-success" href="{{ route('domain.show', ['domain' => $domain])}}" role="button">Details</a>
-                        </td>
-                        </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="container text-center">
+        <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
+            <tr>
+                <td>
+                    <a class="btn btn-outline-success mb-4" href="{{ route('publisher.index')}}" role="button">Return</a>
+                    @method('DELETE')
+                    @csrf
+                    <a class="btn btn-success mb-4" href="#" onclick="document.getElementById('form_{{$publisher->id}}').submit()">Delete Publisher </a>
+                </td>
+            <tr>
+        </form>
     </div>
 </div>  
-
-<div class="container text-center">
-    <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
-        <tr>
-            <td>
-                <a class="btn btn-outline-success" href="{{ route('publisher.index')}}" role="button">Return</a>
-                @method('DELETE')
-                @csrf
-                <!-- <button type="submit"> Excluir </button> -->
-                <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$publisher->id}}').submit()">Delete Publisher </a>
-            </td>
-        <tr>
-    </form>
-</div>
 
 @endsection
 

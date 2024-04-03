@@ -7,8 +7,8 @@
 @include('layout._partials.navbar')
 
 
-<div class= "container tabela">
-    <div class="container text-center">
+<div class= "container tabela border-light shadow text-center">
+    <div class="container">
         <div class="opcoes">
             User Show
         </div>
@@ -51,15 +51,14 @@
     </div>
 
 
-    <div class="container text-center">
+    <div class="container text-center mt-4">
         <form id="form_{{$user->id}}" method="post" action ="{{ route('user.destroy', ['user' => $user->id]) }}"> 
             <tr>
                 <td>
                     <a class="btn btn-outline-success" href="{{ route('user.index')}}" role="button">Return</a>
                     @method('DELETE')
                     @csrf
-                    <!-- <button type="submit"> Excluir </button> -->
-                    <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$user->id}}').submit()">Delete User </a>
+                    <a class="btn btn-success" href="#" onclick="document.getElementById('form_{{$user->id}}').submit()">Delete User </a>
                 </td>
             <tr>
         </form>

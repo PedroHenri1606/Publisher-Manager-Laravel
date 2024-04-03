@@ -6,24 +6,29 @@
 
 @include('layout._partials.navbar')
 
-
-  <div class="container tabela">
-    <div class="container text-center">
-    
-      <div class="row align-items-start">
-        <div class="col opcoes">
-          User List
-        </div>
-
-        <div class="col mt-5">
-          <a class="btn btn-success" href="{{route('user.create')}}" role="button">Add User</a>
-        </div>
-        
+<div class="container tabela border-light shadow text-center">
+  <div class="container">
+    <form method="POST" action="{{route ('user.find')}}" class="row justify-content-end">     
+      @csrf
+      <div class="col-auto col-md-4 opcoes">
+        User List
       </div>
-    </div>
+
+      <div class="col-auto align-self-center">
+      <input type="text" class="findInput" name="id" placeholder="Enter the ID">
+      </div>
+      
+      <div class="col-auto align-self-center">
+        <button class="btn btn-success " type="submit">Find</button>
+      </div>
+
+      <div class="col-auto col-md-2 align-self-center">
+        <a class="btn btn-success" href="{{route('user.create')}}" role="button">Add User</a>
+      </div>
+    <form>
 
 
-    <table class="table">
+    <table class="table mt-2">
       <thead>
         <tr>
           <th class="col item">Id</th>
@@ -53,6 +58,7 @@
         @endforeach
       </tbody>
     </table>
+    {{ $users->onEachSide(0)->links()}}
   </div>
 </div>
 

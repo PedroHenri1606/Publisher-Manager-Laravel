@@ -16,8 +16,27 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('user.index', ['users' => $users]);
+    }
+
+    public function find(Request $request)
+    {
+        //Verifica possui autenticação
+        if(Auth::check()){
+            //id do publisher que desejamos acessar 
+            $id = $request->input('id');
+                $user = User::where('id', $id)->first();
+
+                //Se informar um valor invalido, retorna ao index 
+                if($user == null){
+                    $users = User::paginate(10);
+                    return view('user.index', ['users' => $users]);
+                }
+         
+        }
+        return view ('user.edit', ['user' => $user]);
+
     }
 
     /**
@@ -38,7 +57,6 @@ class UserController extends Controller
             'name' => 'required|min:3|max:50',
             'email' => 'email',
             'password' => 'required|min:5',
-            'role_id' => 'required'
         ];
 
         $feedbacks = [
@@ -50,8 +68,6 @@ class UserController extends Controller
 
             'password.required' => 'Password is a required field',
             'password.min' => 'Password must contain at least 5 characters',
-
-            'role_id.required' => 'Role is a required field',
         ];
 
         $request->validate($validations, $feedbacks);
@@ -59,7 +75,6 @@ class UserController extends Controller
         $user = $request->all();
         $user['password'] = bcrypt($request->password);
     
-        
         $role = defender()->findRoleById($user['role_id']);
    
         $user = User::create($user);
@@ -103,7 +118,6 @@ class UserController extends Controller
             'name' => 'required|min:3|max:50',
             'email' => 'email',
             'password' => 'required|min:5',
-            'role_id' => 'required'
         ];
 
         $feedbacks = [
@@ -115,14 +129,12 @@ class UserController extends Controller
 
             'password.required' => 'Password is a required field',
             'password.min' => 'Password must contain at least 5 characters',
-
-            'role_id.required' => 'Role is a required field',
         ];
 
         $request->validate( $validations, $feedbacks);
 
-        $user = $request->all();
-        $user['password'] = bcrypt($request->password);
+        $request->password = bcrypt($request->password);
+        $user->update($request->all());
 
         return redirect()->route('user.index');
     }

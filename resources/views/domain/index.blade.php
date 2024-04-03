@@ -6,36 +6,32 @@
 
 @include('layout._partials.navbar')
 
-
-  <div class="container tabela">
-    <div class="container text-center">
-    
-      <div class="row align-items-start g-2">
-        <div class="col opcoes">
-          @is('admin')
-            List of all domains
-          @endis
-          @is('publisher')
-            Your domains
-          @endis
-        </div>
-        
-        <div class="col-4 mt-4">
-          <form method="POST" action="{{ route('domain.find')}}">
-            @csrf
-            <input type="text" class="col-4 findInput" name="id" placeholder="Informe o Id">
-            <button class="col-4 btn btn-success " type="submit">Find</button>
-          <form>
-        </div>
-
-        <div class="col mt-5">
-          <a class="btn btn-success" href="{{route('domain.create')}}" role="button">Add Domain</a>
-        </div>
-  
+<div class="container tabela border-light shadow text-center">
+  <div class="container">
+    <form method="POST" action="{{route ('domain.find')}}" class="row justify-content-end">     
+      @csrf
+      <div class="col-auto col-md-4 opcoes">
+        @is('admin')
+          List of all domains
+        @else
+          Your domains
+        @endis
       </div>
-    </div>
 
-    <table class="table">
+      <div class="col-auto align-self-center">
+      <input type="text" class="findInput" name="id" placeholder="Enter the ID">
+      </div>
+      
+      <div class="col-auto align-self-center">
+        <button class="btn btn-success " type="submit">Find</button>
+      </div>
+
+      <div class="col-auto col-md-2 align-self-center">
+        <a class="btn btn-success" href="{{route('domain.create')}}" role="button">Add Domain</a>
+      </div>
+    <form>
+
+    <table class="table mt-2">
       <thead>
         <tr>
           <th class="col item">Id</th>
@@ -70,6 +66,7 @@
           @endforeach
       </tbody>
     </table>
+    {{ $domains->onEachSide(0)->links()}}
   </div>
 </div>
 

@@ -19,11 +19,11 @@ class DomainController extends Controller
 
             if(Publisher::where('email', $publisher->email)->exists() == true){
                 $publisher = Publisher::where('email', $publisher->email)->first();
-                $domains = Domain::where('publisher_id', $publisher->id)->get();
+                $domains = Domain::where('publisher_id', $publisher->id)->paginate(10);
 
                 return view('domain.index', ['domains' => $domains]);
             }            
-                $domains = Domain::all();
+                $domains = Domain::paginate(10);
                 return view('domain.index', ['domains' => $domains]);
         }
     }
@@ -47,7 +47,7 @@ class DomainController extends Controller
 
                 //Se informar um valor invalido, retorna ao index 
                 if($domain == null){
-                    $domains = Domain::where('publisher_id', $publishers->id)->get();
+                    $domains = Domain::where('publisher_id', $publishers->id)->paginate(10);
                     return view('domain.index', ['domains' => $domains]);
                 }
 
@@ -55,6 +55,11 @@ class DomainController extends Controller
             } else {
                 $publishers = Publisher::all();
                 $domain = Domain::where('id', $id)->get()->first();
+
+                if($domain == null){
+                    $domains = Domain::paginate(10);
+                    return view('domain.index', ['domains' => $domains]);
+                }
 
             }
         } 
@@ -78,11 +83,15 @@ class DomainController extends Controller
     public function store(Request $request)
     {
         $validations = [
-
+            'domain' => 'required',
+            'ravshare' => 'required',
+            'status' => 'required',
         ];
 
         $feedbacks = [
-
+            'domain.required' => "Domain it's a required field",
+            'ravshare.required' => "Ravshare it's a required field",
+            'status.required' => "Status it's a required field",
         ];
 
         $request->validate($validations, $feedbacks);
@@ -92,7 +101,7 @@ class DomainController extends Controller
         $domain->ravshare = $request->ravshare;~
         $domain->status = $request->status;
 
-        if($domain->publisher_id == ''){
+        if($request->publisher_id == ''){
             if(Auth::check()){
                 $publisher = Auth::user();
 
@@ -102,7 +111,7 @@ class DomainController extends Controller
             }
 
         } else {
-            $domain->publisher_id = $request->publisher->id;
+            $domain->publisher_id = $request->publisher_id;
         } 
 
         $domain->save();
@@ -133,11 +142,15 @@ class DomainController extends Controller
     public function update(Request $request, Domain $domain)
     {
         $validations = [
-
+            'domain' => 'required',
+            'ravshare' => 'required',
+            'status' => 'required',
         ];
 
         $feedbacks = [
-
+            'domain.required' => "Domain it's a required field",
+            'ravshare.required' => "Ravshare it's a required field",
+            'status.required' => "Status it's a required field",
         ];
 
         $request->validate($validations, $feedbacks);

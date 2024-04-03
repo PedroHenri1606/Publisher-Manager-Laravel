@@ -7,13 +7,15 @@
 @include('layout._partials.navbar')
 
 
-<form method= "post" action="{{ route('user.update', ['user' => $user->id]) }}" >
-    @csrf
-    @method('PUT')
+<div class= "container tabela border-light shadow text-center">
+    <div class="container">
+        <div class="opcoes">
+            User Edit
+        </div>
 
-    <div class="container tabela">
-        <div class="container text-center">
-
+        <form method= "post" action="{{ route('user.update', ['user' => $user->id]) }}" >
+        @csrf
+        @method('PUT')
             <div class="row">
 
                 <div class="row mb-2">
@@ -56,11 +58,13 @@
                 </div>
             </div>
 
-            <a class="btn btn-outline-success" href="{{route('user.index')}}" role="button">Return</a>
-            <button type="submit" class="btn btn-success">Save</button>
-        </div>
+            <div class="mt-4">
+                <a class="btn btn-outline-success" href="{{route('user.index')}}" role="button">Return</a>
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 
 @endsection

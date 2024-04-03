@@ -30,12 +30,24 @@
     <table class="table mt-2">
       <thead>
         <tr>
-          <th class="col item">Id</th>
-          <th class="col item">Name</th>
-          <th class="col item">Phone</th>
-          <th class="col item">Email</th>
-          <th class="col item">Document</th>
-          <th class="col item">Actions</th>
+          <th class="col">
+            <a class="item" href="{{route('publisher.orderById')}}" role="button">Id</a>
+          </th>
+          <th class="col">
+            <a class="item" href="{{route('publisher.orderByName')}}" role="button">Name</a>
+          </th>
+          <th class="col">
+            <a class="item" href="{{route('publisher.orderByPhone')}}" role="button">Phone</a>
+          </th>
+          <th class="col">
+            <a class="item" href="{{route('publisher.orderByEmail')}}" role="button">Email</a>
+          </th>
+          <th class="col">
+            <a class="item" href="{{route('publisher.orderByDocument')}}" role="button">Document</a>
+          </th>
+          <th class="col">
+            <a class="item" href="{{route('publisher.index')}}" role="button">Actions</a>
+          </th>
         </tr>
       </thead>
 

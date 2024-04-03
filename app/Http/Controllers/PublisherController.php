@@ -40,6 +40,36 @@ class PublisherController extends Controller
 
     }
 
+    public function orderById()
+    {
+        $publishers = Publisher::orderBy('id','desc')->paginate(10);
+        return view('publisher.index', ['publishers' => $publishers]);
+    }
+
+    public function orderByName()
+    {
+        $publishers = Publisher::orderBy('name','desc')->paginate(10);
+        return view('publisher.index', ['publishers' => $publishers]);
+    }  
+
+    public function orderByPhone()
+    {
+        $publishers = Publisher::orderBy('phone','desc')->paginate(10);
+        return view('publisher.index', ['publishers' => $publishers]);
+    }  
+
+    public function orderByEmail()
+    {
+        $publishers = Publisher::orderBy('email','desc')->paginate(10);
+        return view('publisher.index', ['publishers' => $publishers]);
+    }  
+
+    public function orderByDocument()
+    {
+        $publishers = Publisher::orderBy('document','desc')->paginate(10);
+        return view('publisher.index', ['publishers' => $publishers]);
+    }  
+
     /**
      * Show the form for creating a new resource.
      */

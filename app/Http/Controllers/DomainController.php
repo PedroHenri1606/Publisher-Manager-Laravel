@@ -68,8 +68,8 @@ class DomainController extends Controller
         return view ('domain.edit', ['domain' => $domain, 'publishers' => $publishers]);
     }
 
-    public function orderById(){
-      
+    public function orderById()
+    {
         $publisher = Auth::user();
 
         //se for publisher
@@ -85,8 +85,8 @@ class DomainController extends Controller
         }    
     }
 
-    public function orderByUri(){
-        
+    public function orderByUri()
+    {    
         $publisher = Auth::user();
 
         //se for publisher
@@ -102,8 +102,8 @@ class DomainController extends Controller
         }    
     }
 
-    public function orderByPublisher(){
-        
+    public function orderByPublisher()
+    {    
         $publisher = Auth::user();
 
         //se for publisher
@@ -119,8 +119,8 @@ class DomainController extends Controller
         }    
     }
 
-    public function orderByRavshare(){
-        
+    public function orderByRavshare()
+    {    
         $publisher = Auth::user();
 
         //se for publisher
@@ -136,8 +136,8 @@ class DomainController extends Controller
         }    
     }
 
-    public function orderByStatus(){
-        
+    public function orderByStatus()
+    {    
         $publisher = Auth::user();
 
         //se for publisher

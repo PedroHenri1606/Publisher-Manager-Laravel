@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
    
+    public function buscar(Request $request)
+    {
+        $valorInput = $request->input('valor');
+
+        $colecao = User::where('id', $valorInput)->orWhere('name','like', "$valorInput%")->orWhere('email', 'like', "$valorInput%")->get(); // Substitua 'campo' pelo campo correto
+
+        return response()->json(['html' => $colecao]);
+    }
+
     /**
      * Display a listing of the resource.
      */

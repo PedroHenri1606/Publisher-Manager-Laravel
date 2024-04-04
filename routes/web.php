@@ -66,6 +66,9 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
 
     Route::post('/user/find', [UserController::class, 'find'])->name('user.find');
 
+    Route::post('/user/buscar', [UserController::class, 'buscar'])->name('buscar');
+
+
     Route::get('/user/orderById', [UserController::class, 'orderById'])->name('user.orderById');
     Route::get('/user/orderByName', [UserController::class, 'orderByName'])->name('user.orderByName');
     Route::get('/user/orderByEmail', [UserController::class, 'orderByEmail'])->name('user.orderByEmail');

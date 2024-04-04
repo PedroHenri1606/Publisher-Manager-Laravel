@@ -7,7 +7,7 @@
       </div>
 
       <div class="col-auto align-self-center">
-        <input class="findInput" type="text" wire:model="input" wire:input="find" placeholder="Id, name or Email">
+        <input type="text" class="findInput" wire:model="input" wire:input="find" placeholder="Id, name or Email">
       </div>
       
       <div class="col-auto col-md-2 align-self-center">

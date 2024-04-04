@@ -16,6 +16,7 @@
         <form method="post" action="{{ route('publisher.store')}}">
             @csrf
             <div class="row">
+            
                 <div class="row mb-2">
                     <label for="name" class="col dado">Name:</label>
                     <div class="col-sm-10">

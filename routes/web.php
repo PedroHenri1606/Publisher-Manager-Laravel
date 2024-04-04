@@ -41,14 +41,6 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::get('/domain', [DomainController::class, 'index'])->name('domain.index');
     Route::post('/domain', [DomainController::class, 'store'])->name('domain.store');
 
-    Route::post('/domain/find', [DomainController::class, 'find'])->name('domain.find');
-    Route::get('/domain/orderById', [DomainController::class, 'orderById'])->name('domain.orderById');
-    Route::get('/domain/orderByUri', [DomainController::class, 'orderByUri'])->name('domain.orderByUri');
-    Route::get('/domain/orderByPublisher', [DomainController::class, 'orderByPublisher'])->name('domain.orderByPublisher');
-    Route::get('/domain/orderByRevshare', [DomainController::class, 'orderByRevshare'])->name('domain.orderByRevshare');
-    Route::get('/domain/orderByStatus', [DomainController::class, 'orderByStatus'])->name('domain.orderByStatus');
-
-
     Route::get('/domain/create', [DomainController::class, 'create'])->name('domain.create');
     Route::get('/domain/{domain}', [DomainController::class, 'show'])->name('domain.show');
 
@@ -57,15 +49,12 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
 
     Route::delete('/domain/{domain}', [DomainController::class, 'destroy'])->name('domain.destroy');
 
+    
     Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
-    Route::post('/reports/buscar', [ReportsController::class, 'buscar'])->name('reports.buscar');
-
 
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index')->middleware('needsRole:admin');
     Route::post('/user', [UserController::class, 'store'])->name('user.store')->middleware('needsRole:admin');
-
-    Route::post('/user/find', [UserController::class, 'find'])->name('user.find');
 
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create')->middleware('needsRole:admin');
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->middleware('needsRole:admin');

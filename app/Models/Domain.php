@@ -15,7 +15,7 @@ class Domain extends Model
         'domain',
         'publisher_id',
         'status',
-        'ravshare'
+        'revshare'
     ];
 
     public function publisher(){

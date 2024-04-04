@@ -39,9 +39,10 @@
                 @endis
 
                 <div class="row mb-2">
-                        <label for="revshare" class="form-label col dado">Revshare:</label>
+                    <label for="revshare" class="col dado">Revshare:</label>
                     <div class="col-sm-10">
-                        <input type="number" value="{{ $domain->revshare ?? old('revshare')}}" name="revshare"class="form-control" max="100">
+                        <input type="number" value="{{ $domain->revshare ?? old('revshare')}}" max="100" name="revshare" class="form-control " placeholder="Revshare">
+                        {{ $errors->has('revshare') ? $errors->first('revshare') : ''}}
                     </div>
                 </div>
 
@@ -53,13 +54,14 @@
                                 @if ($domain->status === 1)
                                     Active
                                 @else 
-                                    Disactive
+                                    Disable
                                 @endif
                             </option>
                             <option> -- Select Status -- </option>
                             <option value="1"> Active </option>
                             <option value="2"> Disable </option>  
                         </select>
+                        {{ $errors->has('status') ? $errors->first('status') : ''}}
                     </div>
                 </div>
             </div>

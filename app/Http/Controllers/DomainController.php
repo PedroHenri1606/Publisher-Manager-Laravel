@@ -30,129 +30,6 @@ class DomainController extends Controller
         }
     }
 
-    public function find(Request $request)
-    {
-        //Verifica possui autenticação
-        if(Auth::check()){
-            //id do domain que desejamos acessar 
-            $input = $request->input('id');
-
-            //Recebo os dados de autenticação do usuario
-            $user = Auth::user();
-
-            //Se o usuario logado for um publisher, ira apresentar somente os domains que ele cadastrou / Ele tera acesso somente aos dominios dele também
-            if(Publisher::where('email', $user->email)->exists() == true){
-                //Busco no banco pelo Eloquent os dados do Publisher pelo Usuario de autenticação
-                $publishers = Publisher::where('email', $user->email)->first();
-                //Domain recebe uma collection com o dominio que possue o mesmo id e que tem o mesmo publisher_id do usuario autenticado 
-                $domain = Domain::where('id', $input)->orWhere('domain', $input)->where('publisher_id',$publishers->id)->get()->first();
-
-                //Se informar um valor invalido, retorna ao index 
-                if($domain == null){
-                    $domains = Domain::where('publisher_id', $publishers->id)->paginate(10);
-                    return view('domain.index', ['domains' => $domains]);
-                }
-
-            //Se o usuario for um admin, ira apresentar todos os dominios cadastrados na aplicação / Ele tera acesso a todos os dominios
-            } else {
-                $publishers = Publisher::all();
-                $domain = Domain::where('id', $input)->orWhere('domain', $input)->get()->first();
-
-                if($domain == null){
-                    $domains = Domain::paginate(10);
-                    return view('domain.index', ['domains' => $domains]);
-                }
-
-            }
-        } 
-        return view ('domain.edit', ['domain' => $domain, 'publishers' => $publishers]);
-    }
-
-    public function orderById()
-    {
-        $publisher = Auth::user();
-
-        //se for publisher
-        if(Publisher::where('email', $publisher->email)->exists() == true){
-            $publisher = Publisher::where('email', $publisher->email)->first();
-
-            $domains = Domain::orderBy('id','desc')->where('publisher_id', $publisher->id)->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        
-        }  else {
-            $domains = Domain::orderBy('id','desc')->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        }    
-    }
-
-    public function orderByUri()
-    {    
-        $publisher = Auth::user();
-
-        //se for publisher
-        if(Publisher::where('email', $publisher->email)->exists() == true){
-            $publisher = Publisher::where('email', $publisher->email)->first();
-
-            $domains = Domain::orderBy('domain','desc')->where('publisher_id', $publisher->id)->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        
-        }  else {
-            $domains = Domain::orderBy('domain','desc')->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        }    
-    }
-
-    public function orderByPublisher()
-    {    
-        $publisher = Auth::user();
-
-        //se for publisher
-        if(Publisher::where('email', $publisher->email)->exists() == true){
-            $publisher = Publisher::where('email', $publisher->email)->first();
-
-            $domains = Domain::orderBy('publisher_id','desc')->where('publisher_id', $publisher->id)->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        
-        }  else {
-            $domains = Domain::orderBy('publisher_id','desc')->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        }    
-    }
-
-    public function orderByRevshare()
-    {    
-        $publisher = Auth::user();
-
-        //se for publisher
-        if(Publisher::where('email', $publisher->email)->exists() == true){
-            $publisher = Publisher::where('email', $publisher->email)->first();
-
-            $domains = Domain::orderBy('revshare','desc')->where('publisher_id', $publisher->id)->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        
-        }  else {
-            $domains = Domain::orderBy('revshare','desc')->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        }    
-    }
-
-    public function orderByStatus()
-    {    
-        $publisher = Auth::user();
-
-        //se for publisher
-        if(Publisher::where('email', $publisher->email)->exists() == true){
-            $publisher = Publisher::where('email', $publisher->email)->first();
-
-            $domains = Domain::orderBy('status','desc')->where('publisher_id', $publisher->id)->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        
-        }  else {
-            $domains = Domain::orderBy('status','desc')->paginate(10);
-            return view('domain.index', ['domains' => $domains]);
-        }    
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -241,7 +118,6 @@ class DomainController extends Controller
         ];
 
         $request->validate($validations, $feedbacks);
-
         $domain->update($request->all());
 
         return redirect()->route('domain.index');

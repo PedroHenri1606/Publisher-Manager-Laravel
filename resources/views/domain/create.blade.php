@@ -16,11 +16,11 @@
         <form method="post" action="{{ route('domain.store')}}">
             @csrf
             <div class="row">
+            
                 <div class="row mb-2">
                     <label for="name" class="col dado">Domain:</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{ $domain->domain ?? old('domain')}}" name="domain" class="form-control " placeholder="Domain">
-                        {{ $errors->has('domain') ? $errors->first('domain') : ''}}  
+                        <input type="text" value="{{ $domain->domain ?? old('name')}}" name="domain" class="form-control " placeholder="Domain">
                     </div>
                 </div>
 

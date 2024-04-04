@@ -6,6 +6,6 @@
 
 @include('layout._partials.navbar')
 
-@livewire('find')
+@livewire('user_find')
 
 @endsection

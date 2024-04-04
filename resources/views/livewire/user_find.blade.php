@@ -11,7 +11,7 @@
       </div>
       
       <div class="col-auto col-md-2 align-self-center">
-        <a class="btn btn-success" href="{{route('user.create')}}" role="button">Add User</a>
+        <a class="btn btn-success " href="{{route('user.create')}}" role="button">Add User</a>
       </div>
     </div>
 
@@ -20,19 +20,19 @@
       <thead>
         <tr>
           <th class="col item">
-            <a class="item" href="{{route('user.orderById')}}" role="button">Id</a>
+            <a class="item" wire:click="orderById" role="button">Id</a>
           </th>
           <th class="col item">
-            <a class="item" href="{{route('user.orderByName')}}" role="button">Name</a>
+            <a class="item" wire:click="orderByName" role="button">Name</a>
           </th>
           <th class="col item">
-            <a class="item" href="{{route('user.orderByEmail')}}" role="button">Email</a>
+            <a class="item" wire:click="orderByEmail" role="button">Email</a>
           </th>
           <th class="col item">
-            <a class="item" href="{{route('user.orderByStatus')}}" role="button">Status</a>
+            <a class="item" wire:click="orderByStatus"  role="button">Status</a>
           </th>
           <th class="col item">
-            <a class="item" href="{{route('user.index')}}" role="button">Actions</a>
+            <a class="item" role="button">Actions</a>
           </th>
         </tr>
       </thead>

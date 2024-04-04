@@ -19,51 +19,6 @@ class UserController extends Controller
         return view('user.index', ['users' => $users]);
     }
 
-    public function find(Request $request)
-    {
-        //Verifica possui autenticação
-        if(Auth::check()){
-            //id do publisher que desejamos acessar 
-            $input = $request->input('input');
-
-                $user = User::where('id', $input)->orWhere('email','like', "%$input%")->orWhere('name', $input)->first();
-
-                //Se informar um valor invalido, retorna ao index 
-                if($user == null){
-                    $users = User::paginate(10);
-                    return view('user.index', ['users' => $users]);
-                }
-         
-        }
-        return view ('user.edit', ['user' => $user]);
-
-    }
-
-    public function orderById()
-    {
-        $users = User::orderBy('id','desc')->paginate(10);
-        return view('user.index', ['users' => $users]);
-    }
-
-    public function orderByName()
-    {
-        $users = User::orderBy('name','desc')->paginate(10);
-        return view('user.index', ['users' => $users]);
-    }
-
-    public function orderByEmail()
-    {
-        $users = User::orderBy('email','desc')->paginate(10);
-        return view('user.index', ['users' => $users]);
-    }
-    
-    public function orderByStatus()
-    {
-        $users = User::orderBy('status','desc')->paginate(10);
-        return view('user.index', ['users' => $users]);
-    }  
-
-
     /**
      * Show the form for creating a new resource.
      */

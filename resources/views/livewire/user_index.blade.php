@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-end">     
     
-      <div class="col-auto col-md-4 opcoes">
+      <div class="col-auto col-md-7 opcoes">
         User List
       </div>
 
@@ -20,13 +20,13 @@
       <thead>
         <tr>
           <th class="col item">
-            <a class="item" wire:click="orderById" role="button">Id</a>
+            <a class="item" wire:click="orderBy('id')" role="button">Id</a>
           </th>
           <th class="col item">
-            <a class="item" wire:click="orderByName" role="button">Name</a>
+            <a class="item" wire:click="orderBy('name')" role="button">Name</a>
           </th>
           <th class="col item">
-            <a class="item" wire:click="orderByEmail" role="button">Email</a>
+            <a class="item" wire:click="orderBy('email')" role="button">Email</a>
           </th>
           <th class="col item">
             <a class="item" wire:click="orderByStatus"  role="button">Status</a>

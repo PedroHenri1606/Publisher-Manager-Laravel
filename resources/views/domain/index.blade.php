@@ -49,7 +49,7 @@
           @endis
 
           <th class="col">
-            <a class="item" href="{{route('domain.orderByRavshare')}}" role="button">Ravshare</a>
+            <a class="item" href="{{route('domain.orderByRevshare')}}" role="button">Revshare</a>
           </th>
 
           <th class="col">
@@ -69,7 +69,7 @@
                 @is('admin')
                 <td>{{ $domain->publisher->name }}</td>
                 @endis
-                <td>{{ $domain->ravshare }}%</td>
+                <td>{{ $domain->revshare }}%</td>
                   @if( $domain->status === 1)
                       <td class="active"> Active </td>
                   @else

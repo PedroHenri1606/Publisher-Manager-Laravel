@@ -39,10 +39,10 @@
                 @endis
 
                 <div class="row mb-2">
-                    <label for="ravshare" class="col dado">Ravshare:</label>
+                    <label for="revshare" class="col dado">Revshare:</label>
                     <div class="col-sm-10">
-                        <input type="number" value="{{ $domain->ravshare ?? old('ravshare')}}" max="100" name="ravshare" class="form-control " placeholder="Ravshare">
-                        {{ $errors->has('ravshare') ? $errors->first('ravshare') : ''}}
+                        <input type="number" value="{{ $domain->revshare ?? old('revshare')}}" max="100" name="revshare" class="form-control " placeholder="Revshare">
+                        {{ $errors->has('revshare') ? $errors->first('revshare') : ''}}
                     </div>
                 </div>
 

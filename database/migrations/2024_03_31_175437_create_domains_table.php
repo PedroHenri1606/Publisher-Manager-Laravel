@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('publisher_id');
             $table->string('domain');
-            $table->integer('ravshare');
+            $table->integer('revshare');
             $table->boolean('status');
             $table->timestamps();
 

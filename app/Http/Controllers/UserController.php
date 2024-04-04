@@ -25,8 +25,9 @@ class UserController extends Controller
         //Verifica possui autenticação
         if(Auth::check()){
             //id do publisher que desejamos acessar 
-            $id = $request->input('id');
-                $user = User::where('id', $id)->first();
+            $input = $request->input('input');
+
+                $user = User::where('id', $input)->orWhere('email','like', "%$input%")->orWhere('name', $input)->first();
 
                 //Se informar um valor invalido, retorna ao index 
                 if($user == null){

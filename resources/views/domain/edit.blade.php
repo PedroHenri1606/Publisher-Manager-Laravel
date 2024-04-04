@@ -39,9 +39,9 @@
                 @endis
 
                 <div class="row mb-2">
-                        <label for="ravshare" class="form-label col dado">Ravshare:</label>
+                        <label for="revshare" class="form-label col dado">Revshare:</label>
                     <div class="col-sm-10">
-                        <input type="number" value="{{ $domain->ravshare ?? old('ravshare')}}" name="ravshare"class="form-control" max="100">
+                        <input type="number" value="{{ $domain->revshare ?? old('revshare')}}" name="revshare"class="form-control" max="100">
                     </div>
                 </div>
 

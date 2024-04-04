@@ -15,7 +15,7 @@
       </div>
 
       <div class="col-auto align-self-center">
-      <input type="text" class="findInput" name="id" placeholder="Enter the ID">
+      <input type="text" class="findInput" name="input" placeholder="Id,Name or Email">
       </div>
       
       <div class="col-auto align-self-center">
@@ -56,9 +56,9 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
                 @if( $user->status === 1)
-                    <td> Active </td>
+                    <td class="active"> Active </td>
                 @else
-                    <td> Disactive</td>
+                    <td class="disactive"> Disactive</td>
                 @endif
               <td>
                 <a class="btn btn-outline-success" href="{{ route('user.edit', ['user' => $user])}}" role="button">Edit user</a>

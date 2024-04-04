@@ -90,7 +90,7 @@
 
 
                             <th class="col">
-                                <a class="item" href="{{route('domain.orderByRavshare')}}" role="button">Ravshare</a>
+                                <a class="item" href="{{route('domain.orderByRevshare')}}" role="button">Revshare</a>
                             </th>
 
                             <th class="col">
@@ -107,7 +107,7 @@
                         <tr>
                             <td>{{ $domain->id }}</td>
                             <td>{{ $domain->domain }}</td>
-                            <td>{{ $domain->ravshare}}%</td>
+                            <td>{{ $domain->revshare}}%</td>
                             @if( $domain->status === 1)
                                 <td> Active </td>
                             @else

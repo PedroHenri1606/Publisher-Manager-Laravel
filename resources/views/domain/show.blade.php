@@ -32,6 +32,13 @@
                             </select>
                         </div>
                     </div>
+                    
+                    <div class="row mb-2">
+                        <label for="name" class="col dado">Revshare:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value="{{ $domain->revshare ?? old('revshare')}}" name="revshare" class="form-control " placeholder="Revshare">
+                        </div>
+                    </div>
 
                     <div class="row mb-2">
                         <label for="nome" class="col dado">Status:</label>

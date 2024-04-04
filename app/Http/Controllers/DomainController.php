@@ -119,7 +119,7 @@ class DomainController extends Controller
         }    
     }
 
-    public function orderByRavshare()
+    public function orderByRevshare()
     {    
         $publisher = Auth::user();
 
@@ -127,11 +127,11 @@ class DomainController extends Controller
         if(Publisher::where('email', $publisher->email)->exists() == true){
             $publisher = Publisher::where('email', $publisher->email)->first();
 
-            $domains = Domain::orderBy('ravshare','desc')->where('publisher_id', $publisher->id)->paginate(10);
+            $domains = Domain::orderBy('revshare','desc')->where('publisher_id', $publisher->id)->paginate(10);
             return view('domain.index', ['domains' => $domains]);
         
         }  else {
-            $domains = Domain::orderBy('ravshare','desc')->paginate(10);
+            $domains = Domain::orderBy('revshare','desc')->paginate(10);
             return view('domain.index', ['domains' => $domains]);
         }    
     }
@@ -171,13 +171,13 @@ class DomainController extends Controller
     {
         $validations = [
             'domain' => 'required',
-            'ravshare' => 'required',
+            'revshare' => 'required',
             'status' => 'required',
         ];
 
         $feedbacks = [
             'domain.required' => "Domain it's a required field",
-            'ravshare.required' => "Ravshare it's a required field",
+            'revshare.required' => "Revshare it's a required field",
             'status.required' => "Status it's a required field",
         ];
 
@@ -185,7 +185,7 @@ class DomainController extends Controller
 
         $domain = new Domain();
         $domain->domain = $request->domain;
-        $domain->ravshare = $request->ravshare;~
+        $domain->revshare = $request->revshare;~
         $domain->status = $request->status;
 
         if($request->publisher_id == ''){
@@ -230,13 +230,13 @@ class DomainController extends Controller
     {
         $validations = [
             'domain' => 'required',
-            'ravshare' => 'required',
+            'revshare' => 'required',
             'status' => 'required',
         ];
 
         $feedbacks = [
             'domain.required' => "Domain it's a required field",
-            'ravshare.required' => "Ravshare it's a required field",
+            'revshare.required' => "Revshare it's a required field",
             'status.required' => "Status it's a required field",
         ];
 

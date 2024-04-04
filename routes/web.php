@@ -45,7 +45,7 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::get('/domain/orderById', [DomainController::class, 'orderById'])->name('domain.orderById');
     Route::get('/domain/orderByUri', [DomainController::class, 'orderByUri'])->name('domain.orderByUri');
     Route::get('/domain/orderByPublisher', [DomainController::class, 'orderByPublisher'])->name('domain.orderByPublisher');
-    Route::get('/domain/orderByRavshare', [DomainController::class, 'orderByRavshare'])->name('domain.orderByRavshare');
+    Route::get('/domain/orderByRevshare', [DomainController::class, 'orderByRevshare'])->name('domain.orderByRevshare');
     Route::get('/domain/orderByStatus', [DomainController::class, 'orderByStatus'])->name('domain.orderByStatus');
 
 

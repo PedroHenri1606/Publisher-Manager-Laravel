@@ -57,7 +57,8 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
 
     Route::delete('/domain/{domain}', [DomainController::class, 'destroy'])->name('domain.destroy');
 
-    Route::get('/reports', [ReportsController::class, 'reports'])->name('reports.index');
+    Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
+    Route::post('/reports/buscar', [ReportsController::class, 'buscar'])->name('reports.buscar');
 
 
 
@@ -65,9 +66,6 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     Route::post('/user', [UserController::class, 'store'])->name('user.store')->middleware('needsRole:admin');
 
     Route::post('/user/find', [UserController::class, 'find'])->name('user.find');
-
-    Route::post('/user/buscar', [UserController::class, 'buscar'])->name('buscar');
-
 
     Route::get('/user/orderById', [UserController::class, 'orderById'])->name('user.orderById');
     Route::get('/user/orderByName', [UserController::class, 'orderByName'])->name('user.orderByName');

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 
-class User_index extends Component
+class UserIndex extends Component
 {
     public $input;
     public $users;
@@ -18,7 +18,10 @@ class User_index extends Component
 
     public function find()
     {
-        $this->users = User::where('id', $this->input)->orWhere('email','like', "%$this->input%")->orWhere('name', 'like',"%$this->input%")->get();
+        $this->users = User::where('id', $this->input)
+                            ->orWhere('email','like', "%$this->input%")
+                            ->orWhere('name', 'like',"%$this->input%")
+                            ->get();
     }
 
     public function orderBy($campo)
@@ -51,6 +54,6 @@ class User_index extends Component
 
     public function render()
     {
-        return view('livewire.user_index');
+        return view('livewire.user-index');
     }
 }

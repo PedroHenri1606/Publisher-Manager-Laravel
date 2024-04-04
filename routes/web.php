@@ -12,19 +12,11 @@ use Illuminate\Support\Facades\Route;
     Route::post('/', [LoginController::class,'authentication'])->name('login');
 
 
-//for more information about rotues, use the command: php artisan route:list
+//for more information about routes, use the command: php artisan route:list
 Route::middleware(['auth'])->prefix('/system')->group(function(){
     
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index')->middleware('needsRole:admin');
     Route::post('/publisher', [PublisherController::class, 'store'])->name('publisher.store')->middleware('needsRole:admin');
-
-    Route::post('/publisher/find', [PublisherController::class, 'find'])->name('publisher.find');
-    Route::get('/publisher/orderById', [PublisherController::class, 'orderById'])->name('publisher.orderById');
-    Route::get('/publisher/orderByName', [PublisherController::class, 'orderByName'])->name('publisher.orderByName');
-    Route::get('/publisher/orderByPhone', [PublisherController::class, 'orderByPhone'])->name('publisher.orderByPhone');
-    Route::get('/publisher/orderByEmail', [PublisherController::class, 'orderByEmail'])->name('publisher.orderByEmail');
-    Route::get('/publisher/orderByDocument', [PublisherController::class, 'orderByDocument'])->name('publisher.orderByDocument');
-
 
     Route::get('/publisher/create', [PublisherController::class, 'create'])->name('publisher.create')->middleware('needsRole:admin');
     Route::get('/publisher/{publisher}', [PublisherController::class, 'show'])->name('publisher.show')->middleware('needsRole:admin');

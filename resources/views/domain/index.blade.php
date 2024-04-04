@@ -6,6 +6,6 @@
 
 @include('layout._partials.navbar')
 
-@livewire('domain_index')
+@livewire('domain-index')
 
 @endsection

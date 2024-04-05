@@ -1,6 +1,12 @@
 .tabela{
+    margin-top: 10vh;
     background-color: WHITE;
-    height: 83.2vh;
+    height: 90vh;
+    width: 70%;
+}
+
+.login{
+    margin-top: 14%;
 }
 
 .input{
@@ -31,46 +37,18 @@
     background-color: white;
     align-items: center;
     color: #00000033;
-    padding-left: 5vw;
+    padding-left: 1vw;
     font-size: 3vh;
     font-weight: bolder;
     text-align: left;
-}
-
-.botao{
-    font-weight: bolder;
-    margin-top: 16vw;
-    font-size: 2.5vh;
-    transition: 1s;
-    margin-right: 2.5vh;
 }
 
 h2{
     margin-bottom: 50px;
 }
 
-p{
-    padding: 0px;
-    margin: 0px;
-}
-
 input{
     border-radius: 5px;
-}
-
-button{
-    margin-top: 2vh;
-    width: 15vw;
-    font-size: 20px;
-}
-
-.fundo{
-    border-radius: 4px;
-    margin-top: 20vh;
-    margin-left: 40vw;
-    text-align: center;
-    width: 20vw;
-    height: 40vh;
 }
 
 .item{
@@ -81,7 +59,7 @@ button{
 }
 
 table{
-    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
 }
 
 th.col{
@@ -90,25 +68,15 @@ th.col{
 
 thead{
     background-color: #00000033;
-    border-radius: 20px;
 }
 
 .botao_cadastrar{
     padding: 0px;
     font-family: "Poppins", sans-serif;
-    font-weight: bolder;
     justify-content: center;
     width: 100%;
     height: 30px;
 }
-
-.navbar{
-    width: 100vw;
-    height: 10vh;
-    align-items: center;
-    padding: 0;
-    margin-bottom: 30px;
- }
 
  .item-nav{
     display: block;
@@ -122,10 +90,6 @@ thead{
    text-align: center;
  }
 
-.dropdown-menu{
-    --bs-border-width: 0px;
-}
-    
 .findInput{
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -150,4 +114,116 @@ thead{
 .disactive{
     color: rgb(255, 0, 0);
     font-weight: bolder;
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: #fafbfe;
+}
+
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    background-color: #198754;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: #FFF;
+}
+
+.sidebar-logo h2{
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.sidebar-logo  {
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: #FFF;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover {
+    background-color: #198754;
+    border-left: 3px solid #ffffff;
+}
+
+.sidebar-item {
+    position: relative;
 }

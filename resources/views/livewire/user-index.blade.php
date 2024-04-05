@@ -3,20 +3,20 @@
     <div class="row justify-content-end">     
     
       <div class="col-auto col-md-7 opcoes">
-        User List
+        List of Users
       </div>
 
       <div class="col-auto align-self-center">
         <input type="text" class="findInput" wire:model="input" wire:input="find" placeholder="Id, name or Email">
       </div>
       
-      <div class="col-auto col-md-2 align-self-center">
+      <div class="col-auto col-2 align-self-center">
         <a class="btn btn-success " href="{{route('user.create')}}" role="button">Add User</a>
       </div>
     </div>
 
 
-    <table class="table mt-2">
+    <table class="table mt-2 border-light shadow text-center mt-4">
       <thead>
         <tr>
           <th class="col item">

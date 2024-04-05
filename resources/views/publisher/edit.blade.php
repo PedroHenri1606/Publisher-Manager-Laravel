@@ -4,9 +4,6 @@
 
 @section('content')
 
-@include('layout._partials.navbar')
-
-
 <div class= "container tabela border-light shadow text-center">
     <div class="container">
         <div class="opcoes">
@@ -16,7 +13,7 @@
         <form method= "post" action="{{ route('publisher.update', ['publisher' => $publisher->id]) }}" >
         @csrf
         @method('PUT')
-            <div class="row">
+            <div class="row mt-4">
 
                 <div class="row mb-2">
                     <label for="name" class="col dado">Name:</label>
@@ -59,7 +56,7 @@
                 </div>
             </div>
             
-            <div class="mt-4">
+            <div class="mt-5">
                 <a class="btn btn-outline-success" href="{{route('publisher.index')}}" role="button">Return</a>
                 <button type="submit" class="btn btn-success">Save</button>
             </div>

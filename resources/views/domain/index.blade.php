@@ -4,8 +4,6 @@
 
 @section('content')
 
-@include('layout._partials.navbar')
-
 @livewire('domain-index')
 
 @endsection

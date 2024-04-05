@@ -4,8 +4,6 @@
 
 @section('content')
 
-@include('layout._partials.navbar')
-
 <div class= "container tabela border-light shadow">
     <div class="container">
         <div class="opcoes text-center">

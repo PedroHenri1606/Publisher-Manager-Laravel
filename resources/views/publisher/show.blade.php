@@ -4,10 +4,7 @@
 
 @section('content')
 
-@include('layout._partials.navbar')
-
-
-<div class= "container  border-light shadow text-center">
+<div class= "container tabela border-light shadow text-center">
     <div class="container">
         <div class="opcoes">
             Publisher Show
@@ -15,46 +12,46 @@
 
         <form>
             <fieldset disabled>
-                <div class="row">
+                <div class="row mt-4">
 
                     <div class="row mb-2">
-                        <label for="name" class="col dado">Name:</label>
-                        <div class="col-sm-10">
+                        <label for="name" class="col-2 dado">Name:</label>
+                        <div class="col">
                             <input type="text" value="{{ $publisher->name ?? old('name')}}" name="name" class="form-control disable" placeholder="Name">
                         </div>
                     </div>
 
                    <div class="row mb-2">
-                        <label for="nome" class="col dado">Email:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Email:</label>
+                        <div class="col">
                             <input type="email" value="{{ $publisher->email ?? old('email')}}" name="email" class="form-control disable" placeholder="Email">
                         </div>
                     </div> 
 
                   <div class="row mb-2">
-                        <label for="nome" class="col dado">Password:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Password:</label>
+                        <div class="col">
                             <input type="password" value="{{ $publisher->password ?? old('password')}}" name="document" class="form-control disable" placeholder="Password">
                         </div>
                     </div>
 
                     <div class="row mb-2">
-                        <label for="nome" class="col dado">Document:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Document:</label>
+                        <div class="col">
                             <input type="text" value="{{ $publisher->document ?? old('document')}}" name="document" class="form-control disable" placeholder="Document">
                         </div>
                     </div>
 
                     <div class="row mb-2">
-                        <label for="nome" class="col dado">Phone:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Phone:</label>
+                        <div class="col">
                             <input type="number" value="{{ $publisher->phone ?? old('phone')}}" name="phone" class="form-control disable" placeholder="Phone">
                         </div>
                     </div>
 
                     <div class="row mb-2">
-                        <label for="nome" class="col dado">Status:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Status:</label>
+                        <div class="col">
                             <select class="form-select">
                                 <option value="{{ $publisher->status}}"> 
                                     @if($publisher->status === 1)
@@ -76,29 +73,29 @@
                 Domains from this publisher
             </div>
 
-            <div class="container  border-light shadow text-center">
+            <div class="border-light shadow text-center">
                 <table class="table">
                     <thead>
                         <tr>
                             <th class="col">
-                                <a class="item" href="{{route('domain.orderById')}}" role="button">Id</a>
+                                <a class="item" href="" role="button">Id</a>
                             </th>
 
                             <th class="col">
-                                <a class="item" href="{{route('domain.orderByUri')}}" role="button">URI</a>
+                                <a class="item" href="" role="button">URI</a>
                             </th>
 
 
                             <th class="col">
-                                <a class="item" href="{{route('domain.orderByRevshare')}}" role="button">Revshare</a>
+                                <a class="item" href="" role="button">Revshare</a>
                             </th>
 
                             <th class="col">
-                                <a class="item" href="{{route('domain.orderByStatus')}}" role="button">Status</a>
+                                <a class="item" href="" role="button">Status</a>
                             </th>
                             
                             <th class="col">
-                                <a class="item" href="{{route('domain.index')}}" role="button">Actions</a>
+                                <a class="item" href="" role="button">Actions</a>
                             </th>
                         </tr>
                     </thead>
@@ -109,9 +106,9 @@
                             <td>{{ $domain->domain }}</td>
                             <td>{{ $domain->revshare}}%</td>
                             @if( $domain->status === 1)
-                                <td> Active </td>
+                                <td class="active"> Active </td>
                             @else
-                                <td> Disactive</td>
+                                <td class="disactive"> Disactive</td>
                             @endif
                             <td>
                                 <a class="btn btn-outline-success" href="{{ route('domain.edit', ['domain' => $domain])}}" role="button">Edit Publisher</a>
@@ -123,7 +120,7 @@
                 </table>
             </div>
 
-    <div class="container text-center">
+    <div class="container text-center mt-5">
         <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
             <tr>
                 <td>

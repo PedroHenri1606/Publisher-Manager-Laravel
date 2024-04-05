@@ -1,51 +1,50 @@
-<nav class="navbar bg-body-tertiary bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand item-nav" href="{{route('logout')}}">Publisher Manager</a>
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        Menu
-      </button>
-      
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="wrapper">
+    <aside id="sidebar">
+        <div class="d-flex">
+            <button class="toggle-btn" type="button">
+                <i class="lni lni-grid-alt"></i>
+            </button>
+            <div class="sidebar-logo">
+                <h2>Publisher Manager</h2>
+            </div>
         </div>
-       
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            
-            @is('admin')
-            <li class="nav-item">
-              <a class="item-nav " aria-current="page" href="{{route('publisher.index')}}">Publishers</a>
+        <ul class="sidebar-nav ">
+            <li class="sidebar-item">
+                <a href="{{route('user.index')}}" class="sidebar-link">
+                    <i class="lni lni-user"></i>
+                    <span>Users</span>
+                </a>
             </li>
-            @endis
-          
-            @is('publisher')
-            <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
+            <li class="sidebar-item">
+                <a href="{{route('domain.index')}}" class="sidebar-link">
+                    <i class="lni lni-website"></i>
+                    <span>Domains</span>
+                </a>
             </li>
-            @endis
-
-            @is('admin')
-            <li class="nav-item">
-              <a class="item-nav" aria-current="page" href="{{route('domain.index')}}">Domains</a>
+            <li class="sidebar-item">
+                <a href="{{route('publisher.index')}}" class="sidebar-link">
+                    <i class="lni lni-play"></i>
+                    <span>Publishers</span>
+                </a>
             </li>
-            @endis
-            
-            @is('admin')
-              <li class="nav-item">
-                <a class="item-nav" aria-current="page" href="{{route('user.index')}}">Users</a>
-              </li>
-            @endis
-
-            @is(['publisher', 'admin'])
-              <li class="nav-item">
-                <a class="item-nav" aria-current="page" href="{{route('reports.index')}}">Reports</a>
-              </li>
-            @endis
-          </ul>
+            <li class="sidebar-item">
+                <a href="{{route('reports.index')}}" class="sidebar-link">
+                    <i class="lni lni-stats-up"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer border-light shadow text-center">
+            <a href="{{route('logout')}}" class="sidebar-link">
+                <i class="lni lni-exit"></i>
+                <span>Logout</span>
+            </a>
         </div>
-      </div>
-    </div>
-</nav>
+    </aside>
+    @yield('content') 
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous">
+</script>
+<script src="{{ asset('js/script.js')}}"></script>

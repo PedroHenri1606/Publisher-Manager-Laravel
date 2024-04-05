@@ -4,9 +4,6 @@
 
 @section('content')
 
-@include('layout._partials.navbar')
-
-
 <div class= "container tabela border-light shadow text-center">
     <div class="container">
         <div class="opcoes">
@@ -15,25 +12,25 @@
 
         <form>
             <fieldset disabled>
-                <div class="row">
+                <div class="row mt-4">
 
                     <div class="row mb-2">
-                        <label for="name" class="col dado">Name:</label>
-                        <div class="col-sm-10">
+                        <label for="name" class="col-2 dado">Name:</label>
+                        <div class="col">
                             <input type="text" value="{{ $user->name ?? old('name')}}" name="name" class="form-control disable" placeholder="Name">
                         </div>
                     </div>
 
                    <div class="row mb-2">
-                        <label for="nome" class="col dado">Email:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Email:</label>
+                        <div class="col">
                             <input type="email" value="{{ $user->email ?? old('email')}}" name="email" class="form-control disable" placeholder="Email">
                         </div>
                     </div> 
 
                     <div class="row mb-2">
-                        <label for="nome" class="col dado">Status:</label>
-                        <div class="col-sm-10">
+                        <label for="nome" class="col-2 dado">Status:</label>
+                        <div class="col">
                             <select class="form-select">
                                 <option value="{{ $user->status}}"> 
                                     @if($user->status === 1)
@@ -50,8 +47,7 @@
         </form>
     </div>
 
-
-    <div class="container text-center mt-4">
+    <div class="mt-5">
         <form id="form_{{$user->id}}" method="post" action ="{{ route('user.destroy', ['user' => $user->id]) }}"> 
             <tr>
                 <td>

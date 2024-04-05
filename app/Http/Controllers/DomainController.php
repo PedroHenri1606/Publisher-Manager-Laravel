@@ -14,20 +14,7 @@ class DomainController extends Controller
      */
     public function index()
     {
-        if(Auth::check()){
-            $publisher = Auth::user();
-
-            //se for publisher
-            if(Publisher::where('email', $publisher->email)->exists() == true){
-                $publisher = Publisher::where('email', $publisher->email)->first();
-                $domains = Domain::where('publisher_id', $publisher->id)->paginate(10);
-
-                return view('domain.index', ['domains' => $domains]);
-            }       
-            //se for admin     
-                $domains = Domain::paginate(10);
-                return view('domain.index', ['domains' => $domains]);
-        }
+        return view('domain.index');
     }
 
     /**
@@ -96,8 +83,26 @@ class DomainController extends Controller
      */
     public function edit(Domain $domain)
     {
+        $user = Auth::user();
         $publishers = Publisher::all();
-        return view('domain.edit', ['publishers' => $publishers, 'domain' => $domain]);
+
+        //Verfica se o usuario é um admin ou publisher
+        if(Publisher::where('email', $user->email)->exists()){
+
+            //Condição se o usuario for publisher
+            $publisher = Publisher::where('email', $user->email)->first();
+
+            //Tera acesso a editar somente os domains que pertencem a ele
+            if($publisher->id == $domain->publisher_id){
+                return view('domain.edit', ['publishers' => $publishers, 'domain' => $domain]);
+            } else {
+                return redirect()->route('domain.index');
+            }
+        } else {
+
+            //Condição se ele for admin - tera acesso a editar todos os domains cadastrados
+            return view('domain.edit', ['publishers' => $publishers, 'domain' => $domain]);
+        }
     }
 
     /**
@@ -105,6 +110,7 @@ class DomainController extends Controller
      */
     public function update(Request $request, Domain $domain)
     {
+
         $validations = [
             'domain' => 'required',
             'revshare' => 'required',

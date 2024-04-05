@@ -1,8 +1,6 @@
 .tabela{
-    margin-top: 2vw;
     background-color: WHITE;
-    height: 75vh;
-    border-radius: 6px;
+    height: 83.2vh;
 }
 
 .input{
@@ -76,9 +74,32 @@ button{
 }
 
 .item{
+    font-family: "Poppins", sans-serif;
     text-decoration: none;
-    font-size: bolder;
-    color: black;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+}
+
+table{
+    border-radius: 10px;
+}
+
+th.col{
+    color: rgba(146, 144, 144, 0.322);
+}
+
+thead{
+    background-color: #00000033;
+    border-radius: 20px;
+}
+
+.botao_cadastrar{
+    padding: 0px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
 }
 
 .navbar{

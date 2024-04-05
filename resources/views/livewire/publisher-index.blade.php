@@ -1,6 +1,10 @@
+<div class="container zeropadding">
+  <a class="btn btn-success botao_cadastrar" href="{{route('publisher.create')}}" role="button">Add Publisher</a>
+</div>
+
 <div class="container tabela border-light shadow text-center">
   <div class="container">
-    <div class="row justify-content-end"> 
+    <div class="row justify-content-center"> 
         
       <div class="col-auto col-md-7 opcoes">
         Publisher List
@@ -9,13 +13,9 @@
       <div class="col-auto align-self-center">
         <input type="text" class="findInput" wire:model="input" wire:input="find" name="id" placeholder="Id, name, phone, email or document">
       </div>
-      
-      <div class="col-auto col-md-2 align-self-center">
-        <a class="btn btn-success" href="{{route('publisher.create')}}" role="button">Add Publisher</a>
-      </div>
     </div>
 
-    <table class="table mt-2">
+    <table class="table mt-2 border-light shadow text-center">
       <thead>
         <tr>
           <th class="col">

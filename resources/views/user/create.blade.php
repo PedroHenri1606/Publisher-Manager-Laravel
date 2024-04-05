@@ -42,6 +42,7 @@
                     <label for="role_id" class="col-2 dado">Role:</label>
                     <div class="col">
                         <select class="form-select" name="role_id">
+                        <option> -- Select Role -- </option>
                             @foreach($roles as $role)
                                 <option value="{{ $role->id }}" > {{ $role->name}} </option> 
                             @endforeach                         

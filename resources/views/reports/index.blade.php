@@ -9,6 +9,7 @@
         <div class="opcoes text-center">
             Reports
         </div>
+        <p>Produzir relatorios do tipo pizza e graficos metricos aqui</p>
     </div>
 </div>
 

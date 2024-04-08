@@ -11,33 +11,32 @@ use Illuminate\Support\Facades\Auth;
 class ReportsController extends Controller
 {
 
-    public $users;
-
     public function index(){
-        /*
-        if(Auth::check()){
-            $publisher = Auth::user();
+    
+        $user = auth()->user();
 
-            if(Publisher::where('email', $publisher->email)->exists() == true){
-                $publisher = Publisher::where('email', $publisher->email)->first();
-                $domains = Domain::where('publisher_id', $publisher->id)->get();
+        if(Publisher::where('email', $user->email)->exists()){
+           
+            $publisher = Publisher::where('email', $user->email)->first();
+    
+            $domains = Domain::where('publisher_id', $publisher->id)->count();
+            $activeDomains = Domain::where('status' , 1)->where('publisher_id', $publisher->id)->count();
+        
+        } else {
 
-                return view('reports.index', ['domains' => $domains]);
-            }            
-                $domains = Domain::all();
-                return view('reports.index', ['domains' => $domains]);
-        }*/
+            $domains = Domain::all()->count();
+            $activeDomains = Domain::where('status', 1)->count();
+            
+        }
+        
+        $publishers = Publisher::all()->count();
 
-        $this->users = User::all();
-        return view("reports.index",['users'=> $this->users]);
-    }
+        $revshares = Domain::all()->pluck('revshare')->toArray();
+        $revshares = implode(',', $revshares); 
 
-    public function buscar(Request $request)
-    {   
-        $valorInput = $request->input('valor');
+        $domainNames = Domain::all()->pluck('id')->toArray();     
+        $domainNames = implode(',', $domainNames);
 
-        $this->users = User::where('id', $valorInput)->orWhere('name','like', "$valorInput%")->orWhere('email', 'like', "$valorInput%")->get(); 
-
-        return response($this->users);
+        return view("reports.index", compact('domains','publishers','activeDomains','revshares','domainNames'));
     }
 }

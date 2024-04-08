@@ -9,24 +9,28 @@
             </div>
         </div>
         <ul class="sidebar-nav ">
+            @is('admin')
             <li class="sidebar-item">
                 <a href="{{route('user.index')}}" class="sidebar-link">
                     <i class="lni lni-user"></i>
                     <span>Users</span>
                 </a>
             </li>
+            @endis
             <li class="sidebar-item">
                 <a href="{{route('domain.index')}}" class="sidebar-link">
                     <i class="lni lni-website"></i>
                     <span>Domains</span>
                 </a>
             </li>
+            @is('admin')
             <li class="sidebar-item">
                 <a href="{{route('publisher.index')}}" class="sidebar-link">
                     <i class="lni lni-play"></i>
                     <span>Publishers</span>
                 </a>
             </li>
+            @endis
             <li class="sidebar-item">
                 <a href="{{route('reports.index')}}" class="sidebar-link">
                     <i class="lni lni-stats-up"></i>

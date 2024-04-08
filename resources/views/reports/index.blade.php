@@ -74,7 +74,7 @@
           borderColor: '#198754', // -> altera a cor da borda do grafico 
           backgroundColor: '#198754', // -> altera a cor do fundo
           color: '#198754', // -> altera a cor da fonte
-          borderWidth: 10 // -> borderWidth sera a expessura da linha do grafico 
+          borderWidth: 1 // -> borderWidth sera a expessura da linha do grafico 
         }],
       },
       options: {

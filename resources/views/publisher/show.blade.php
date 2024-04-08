@@ -120,14 +120,14 @@
                 </table>
             </div>
 
-    <div class="container text-center mt-5">
+    <div class="container text-center mt-4">
         <form id="form_{{$publisher->id}}" method="post" action ="{{ route('publisher.destroy', ['publisher' => $publisher->id]) }}"> 
             <tr>
                 <td>
-                    <a class="btn btn-outline-success mb-4" href="{{ route('publisher.index')}}" role="button">Return</a>
+                    <a class="btn btn-outline-success mb-2" href="{{ route('publisher.index')}}" role="button">Return</a>
                     @method('DELETE')
                     @csrf
-                    <a class="btn btn-success mb-4" href="#" onclick="document.getElementById('form_{{$publisher->id}}').submit()">Delete Publisher </a>
+                    <a class="btn btn-success mb-2" href="#" onclick="document.getElementById('form_{{$publisher->id}}').submit()">Delete Publisher </a>
                 </td>
             <tr>
         </form>

@@ -89,6 +89,6 @@ class DomainIndex extends Component
 
     public function render()
     {
-        return view('livewire.domain-index');
+        return view('livewire.domain-index',['domains' => Domain::paginate(10)]);
     }
 }

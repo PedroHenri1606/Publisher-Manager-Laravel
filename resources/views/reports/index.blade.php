@@ -12,7 +12,7 @@
       </div>
 
       <div class="row">
-
+        <!-- Criar telas para relatorios, migrations onde ira conter dados CPM,CPC,RPM...., criar uma seeder para alimentar a tabele enquanto não tem conexão com api-->
         @is('admin')
         <div class="col-4">
           <article class="card card_report shadow pt-2">

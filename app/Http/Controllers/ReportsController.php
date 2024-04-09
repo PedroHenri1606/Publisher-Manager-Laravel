@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Domain;
 use App\Models\Publisher;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ReportsController extends Controller
 {
@@ -45,5 +42,9 @@ class ReportsController extends Controller
         $publishers = Publisher::all()->count();
 
         return view("reports.index", compact('domains','publishers','activeDomains','revshares','domainNames'));
+    }
+
+    public function show(Domain $domain){
+        return view('reports.show', ['domain' => $domain]);
     }
 }

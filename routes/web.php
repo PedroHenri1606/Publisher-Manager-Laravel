@@ -43,6 +43,8 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
 
     
     Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
+    Route::get('/reports/{domain}', [ReportsController::class, 'show'])->name('reports.show');
+
 
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index')->middleware('needsRole:admin');

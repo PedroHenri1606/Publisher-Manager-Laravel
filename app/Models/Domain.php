@@ -21,4 +21,8 @@ class Domain extends Model
     public function publisher(){
         return $this->belongsTo(Publisher::class);
     }
+
+    public function revenueDomain(){
+        return $this->hasMany(RevenueDomain::class);
+    }
 }

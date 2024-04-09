@@ -4,7 +4,7 @@
 
 @section('content')
 
-@livewire('report.index')
+@livewire("report.index")
 
 @endsection
 

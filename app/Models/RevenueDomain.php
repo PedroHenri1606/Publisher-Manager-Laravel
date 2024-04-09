@@ -15,10 +15,7 @@ class RevenueDomain extends Model
         'domain_id',
         'impressions',
         'cpm',
-        'cpc',
         'rpm',
-        'ctr',
-        'clicks',
         'revenue', 
     ];
 

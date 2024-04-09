@@ -49,7 +49,7 @@ class DomainController extends Controller
 
         $domain = new Domain();
         $domain->domain = $request->domain;
-        $domain->revshare = $request->revshare;~
+        $domain->revshare = $request->revshare;
         $domain->status = $request->status;
 
         if($request->publisher_id == ''){

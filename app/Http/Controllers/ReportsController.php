@@ -3,48 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domain;
-use App\Models\Publisher;
+use App\Models\RevenueDomain;
+use Illuminate\Http\Request;
 
 class ReportsController extends Controller
 {
 
     public function index(){
-    
-        $user = auth()->user();
+        return view("reports.index");
+    }
 
-        if(Publisher::where('email', $user->email)->exists()){
-           
-            //se o usuario for publisher
-            $publisher = Publisher::where('email', $user->email)->first();
-    
-            $domains = Domain::where('publisher_id', $publisher->id)->count();
-            $activeDomains = Domain::where('status' , 1)->where('publisher_id', $publisher->id)->count();
-
-            $revshares = Domain::all()->where('publisher_id', $publisher->id)->where('status', 1)->pluck('revshare')->toArray();
-            $revshares = implode(',', $revshares); 
-    
-            $domainNames = Domain::all()->where('publisher_id', $publisher->id)->where('status', 1)->pluck('id')->toArray();     
-            $domainNames = implode(',', $domainNames);
+    public function historic(Domain $domain){
         
-        } else {
-            //se o usuario for admin
-            $domains = Domain::all()->count();
-            $activeDomains = Domain::where('status', 1)->count();
+        $revenuesDomain = RevenueDomain::where('domain_id', $domain->id)->get();
+        return view("reports.historic", ['revenuesDomain' => $revenuesDomain, 'domain' => $domain]);
+    }
 
-            $revshares = Domain::all()->where('status',1)->pluck('revshare')->toArray();
-            $revshares = implode(',', $revshares); 
-    
-            $domainNames = Domain::all()->where('status', 1)->pluck('id')->toArray();     
-            $domainNames = implode(',', $domainNames);
-            
-        }
+    public function create(Domain $domain){
+
+        return view('reports.create', ['domain' => $domain]);
+    }
+
+    public function store(Request $request){
+
+        $validations = [
+            'impressions' => 'required',
+            'revenue' => 'required',
+        ];
+
+        $feedbacks = [
+            'impressions.required' => "Impressions it's a required field",
+            'revenue.required' => "Revenue it's a required field",
+        ];
+
+        $request->validate($validations, $feedbacks);
+
+        $domain = Domain::where('domain', $request->domain)->first();
+
+        $revenueDomain = new RevenueDomain;
+        $revenueDomain->domain_id = $domain->id;
+        $revenueDomain->impressions = $request->impressions;
+        $revenueDomain->cpm = (($request->revenue / $request->impressions) * 1000);
+        $revenueDomain->rpm = (($request->revenue / $request->impressions) * 1000);
+        $revenueDomain->revenue = $request->revenue;
+
+        $revenueDomain->save();
+       
+        return redirect()->route('reports.index');
         
-        $publishers = Publisher::all()->count();
-
-        return view("reports.index", compact('domains','publishers','activeDomains','revshares','domainNames'));
     }
 
     public function show(Domain $domain){
-        return view('reports.show', ['domain' => $domain]);
+
+        $revenueDomain = RevenueDomain::where('domain_id', $domain->id)->first();
+            
+            $domainDatas = RevenueDomain::where('domain_id', $domain->id)->get();
+
+        return view('reports.show', compact('domain','revenueDomain'));
     }
+
 }

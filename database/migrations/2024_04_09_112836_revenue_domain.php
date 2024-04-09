@@ -17,12 +17,10 @@ return new class extends Migration
             $table->increments("id");
             $table->unsignedBigInteger("domain_id");
             $table->bigInteger("impressions");
-            $table->integer("cpm");
-            $table->integer("cpc");
-            $table->integer("rpm");
-            $table->integer("ctr");
-            $table->integer("clicks");
-            $table->integer("revenue");
+            $table->decimal("cpm",3,2);
+            $table->decimal("rpm",3,2);
+            $table->double("revenue");
+            $table->timestamps();
 
             $table->foreign("domain_id")->references("id")->on("domains");
         });

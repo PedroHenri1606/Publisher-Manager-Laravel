@@ -61,7 +61,9 @@
                       <td class="disactive"> Disactive</td>
                   @endif
                 <td>
-                  <a class="btn btn-success" href="{{ route('reports.show', ['domain' => $domain])}}" role="button">Details</a>
+                  <a class="btn btn-outline-success" href="{{ route('reports.show', ['domain' => $domain])}}" role="button">Details</a>
+                  <a class="btn btn-outline-success" href="{{ route('reports.create', ['domain' => $domain])}}" role="button">Create Log</a>
+                  <a class="btn btn-success" href="{{ route('reports.historic', ['domain' => $domain->id])}}" role="button">View Historic</a>
                 </td>
                 </tr>
           @endforeach

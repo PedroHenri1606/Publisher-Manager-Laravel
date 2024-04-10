@@ -25,38 +25,34 @@ class DomainIndex extends Component
             
         } else {
 
-        $this->domains = Domain::all();
+            $this->domains = Domain::all();     
         }
     }
 
     public function find()
-    {
-        //Verifica possui autenticação
-        if(Auth::check()){
+    {            
+        //Recebo os dados de autenticação do usuario
+        $user = Auth::user();
+
+        //Se o usuario logado for um publisher, ira apresentar somente os domains que ele cadastrou / Ele tera acesso somente aos dominios dele também
+        if(Publisher::where('email', $user->email)->exists() == true){
+            //Busco no banco pelo Eloquent os dados do Publisher pelo Usuario de autenticação
+            $publisher = Publisher::where('email', $user->email)->first();
             
-            //Recebo os dados de autenticação do usuario
-            $user = Auth::user();
-
-            //Se o usuario logado for um publisher, ira apresentar somente os domains que ele cadastrou / Ele tera acesso somente aos dominios dele também
-            if(Publisher::where('email', $user->email)->exists() == true){
-                //Busco no banco pelo Eloquent os dados do Publisher pelo Usuario de autenticação
-                $publisher = Publisher::where('email', $user->email)->first();
-                
-                //Domain recebe uma collection com o dominio que possue o mesmo id e que tem o mesmo publisher_id do usuario autenticado 
-                $this->domains = Domain::where('publisher_id',$publisher->id)
-                                        ->where('id', $this->input)
-                                        ->orWhere('domain', 'like', "%$this->input%")
-                                        ->get();
-
-        
-            //Se o usuario for um admin, ira apresentar todos os dominios cadastrados na aplicação / Ele tera acesso a todos os dominios
-            } else {
-                
-                $this->domains = Domain::where('id', $this->input)
-                                        ->orWhere('domain', 'like',  "%$this->input%")
-                                        ->get();
-            }
-        } 
+            //Domain recebe uma collection com o dominio que possue o mesmo id e que tem o mesmo publisher_id do usuario autenticado 
+            $this->domains = Domain::where('publisher_id', $publisher->id)
+                                    ->where(function($query){
+                                        $query->where('domain', 'like', "%$this->input%")
+                                        ->orWhere('id', $this->input);
+                                    })->get();
+    
+        //Se o usuario for um admin, ira apresentar todos os dominios cadastrados na aplicação / Ele tera acesso a todos os dominios
+        } else {
+            
+            $this->domains = Domain::where('id', $this->input)
+                                    ->orWhere('domain', 'like',  "%$this->input%")
+                                    ->get();
+        }
     }
 
     public function orderBy($campo)
@@ -89,6 +85,6 @@ class DomainIndex extends Component
 
     public function render()
     {
-        return view('livewire.domain-index',['domains' => Domain::paginate(10)]);
+        return view('livewire.domain-index');
     }
 }

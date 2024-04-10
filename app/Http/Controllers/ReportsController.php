@@ -16,6 +16,7 @@ class ReportsController extends Controller
     public function historic(Domain $domain){
         
         $revenuesDomain = RevenueDomain::where('domain_id', $domain->id)->get();
+        
         return view("reports.historic", ['revenuesDomain' => $revenuesDomain, 'domain' => $domain]);
     }
 
@@ -61,17 +62,30 @@ class ReportsController extends Controller
 
         $totalRevenue = 0;
         $totalImpressions = 0;
+
+        $valoresCpmGrafico = '';  $indiceCpmGrafico = '';
+        $valoresRevenueGrafico = '';  $indiceRevenueGrafico = '';
         
         //Se o domain possuir um historic log, ira enviar revenue com os dados do domain
         if(RevenueDomain::where('domain_id', $domain->id)->exists()){
 
+            //Valores presentes no grafico CPM
             $valoresCpmGrafico = RevenueDomain::where('domain_id', $domain->id)->pluck('cpm')->toArray();
-                $valoresCpmGrafico = implode(',', $valoresCpmGrafico);
 
+                $indiceCpmGrafico = range(1, count($valoresCpmGrafico));
+                $indiceCpmGrafico = implode(',', $indiceCpmGrafico);
+
+            $valoresCpmGrafico = implode(',', $valoresCpmGrafico);
+
+            //Valores presentes no grafico Revenue
             $valoresRevenueGrafico = RevenueDomain::where('domain_id', $domain->id)->pluck('revenue')->toArray();
-                $valoresRevenueGrafico = implode(',', $valoresRevenueGrafico);
 
+                $indiceRevenueGrafico = range(1, count($valoresRevenueGrafico));
+                $indiceRevenueGrafico = implode(',', $indiceRevenueGrafico);
 
+            $valoresRevenueGrafico = implode(',', $valoresRevenueGrafico);
+
+            //Valores presentes nos cards de informações do site
             $revenuesDomain = RevenueDomain::where('domain_id', $domain->id)->get();
 
             foreach($revenuesDomain as $indice => $valor){
@@ -90,18 +104,12 @@ class ReportsController extends Controller
                 }
             }
 
-            return view('reports.show', compact('domain','totalImpressions','totalRevenue','cpmAverage','rpmAverage','valoresCpmGrafico','valoresRevenueGrafico'));
+            return view('reports.show', compact('domain','totalImpressions','totalRevenue','cpmAverage','rpmAverage','valoresCpmGrafico','indiceCpmGrafico','valoresRevenueGrafico','indiceRevenueGrafico'));
         
         } else{
 
-            $revenueDomain->domain_id = $domain->id;
-            $revenueDomain->impressions = 0;
-            $revenueDomain->cpm = 0;
-            $revenueDomain->rpm = 0;
-            $revenueDomain->revenue = 0;
-
-            //Se o domain não possui um historic log, ire enviar revenues com os dados zerados
-            return view('reports.show', compact('domain','revenueDomain'));
+            //Se o domain não possui um historic log, ire enviar os dados zerados
+            return view('reports.show', compact('domain','totalImpressions','totalRevenue','cpmAverage','rpmAverage','valoresCpmGrafico','indiceCpmGrafico','valoresRevenueGrafico','indiceRevenueGrafico'));
         }
     }
 

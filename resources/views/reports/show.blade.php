@@ -110,7 +110,7 @@
     new Chart(ctx1, {
       type: 'bar', // -> type é o tipo do grafico
       data: { // -> No data, é onde vai ficar armazenado as informaçãoes do gráfico
-        labels: ['1','2','3','4','5'], // -> labels são os indices do gráfico
+        labels: [ {{ $indiceRevenueGrafico }} ], // -> labels são os indices do gráfico
         datasets: [{ // -> dentro do datasets, sera armazenado as informações dos dados 
           label: 'Revenue History', // -> label, sera o nome do dado que o gráfico corresponde
           data: [ {{ $valoresRevenueGrafico }} ], // -> data sera onde sera armazenado os dados do grafico 
@@ -136,7 +136,7 @@
     new Chart(ctx2, {
       type: 'line', 
       data: { 
-        labels: ['1','2','3','4','5'], 
+        labels: [ {{ $indiceCpmGrafico }} ], 
         datasets: [{ 
           label: 'CPM History',
           data: [ {{$valoresCpmGrafico }} ], 

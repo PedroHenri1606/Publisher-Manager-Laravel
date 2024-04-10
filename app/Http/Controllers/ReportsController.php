@@ -55,13 +55,42 @@ class ReportsController extends Controller
     public function show(Domain $domain){
 
         $revenueDomain = new RevenueDomain;
-                        
+
+        $cpmAverage = 0;
+        $rpmAverage = 0;
+
+        $totalRevenue = 0;
+        $totalImpressions = 0;
+        
         //Se o domain possuir um historic log, ira enviar revenue com os dados do domain
         if(RevenueDomain::where('domain_id', $domain->id)->exists()){
 
-            $revenueDomain = RevenueDomain::where('domain_id', $domain->id)->first();
-            
-            return view('reports.show', compact('domain','revenueDomain'));
+            $valoresCpmGrafico = RevenueDomain::where('domain_id', $domain->id)->pluck('cpm')->toArray();
+                $valoresCpmGrafico = implode(',', $valoresCpmGrafico);
+
+            $valoresRevenueGrafico = RevenueDomain::where('domain_id', $domain->id)->pluck('revenue')->toArray();
+                $valoresRevenueGrafico = implode(',', $valoresRevenueGrafico);
+
+
+            $revenuesDomain = RevenueDomain::where('domain_id', $domain->id)->get();
+
+            foreach($revenuesDomain as $indice => $valor){
+                $cpmAverage += $revenuesDomain[$indice]->cpm / $revenuesDomain->count();
+                    $cpmAverage = number_format($cpmAverage,2);
+
+                $rpmAverage += $revenuesDomain[$indice]->rpm / $revenuesDomain->count();
+                    $rpmAverage = number_format($rpmAverage,2);
+
+                if($revenuesDomain[$indice]->revenue > $totalRevenue){
+                    $totalRevenue += $revenuesDomain[$indice]->revenue;
+                }
+
+                if($revenuesDomain[$indice]->impressions > $totalImpressions){
+                    $totalImpressions += $revenuesDomain[$indice]->impressions;
+                }
+            }
+
+            return view('reports.show', compact('domain','totalImpressions','totalRevenue','cpmAverage','rpmAverage','valoresCpmGrafico','valoresRevenueGrafico'));
         
         } else{
 

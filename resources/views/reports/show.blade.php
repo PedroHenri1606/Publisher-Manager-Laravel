@@ -55,13 +55,13 @@
             <div class="row mt-2">
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>Total Impressions: {{ $revenueDomain->impressions}} </h3>
+                        <h3>Total Impressions: {{ $totalImpressions }} </h3>
                     </article>
                 </div>
 
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>Total Revenue: ${{ $revenueDomain->revenue }}</h3>
+                        <h3>Total Revenue: ${{ $totalRevenue }}</h3>
                     </article>
                 </div>
             </div>
@@ -69,14 +69,14 @@
             <div class="row mt-2 mb-2">
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>Average CPM: ${{ $revenueDomain->cpm }} </h3>
+                        <h3>Average CPM: $ {{ $cpmAverage}} </h3>
                     </article>
                 </div>
 
 
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>Average RPM: ${{ $revenueDomain->rpm }}</h3>
+                        <h3>Average RPM: ${{ $rpmAverage}}</h3>
                     </article>
                 </div>
             </div>
@@ -110,10 +110,10 @@
     new Chart(ctx1, {
       type: 'bar', // -> type é o tipo do grafico
       data: { // -> No data, é onde vai ficar armazenado as informaçãoes do gráfico
-        labels: ['January ','February ','March ','April','May'], // -> labels são os indices do gráfico
+        labels: ['1','2','3','4','5'], // -> labels são os indices do gráfico
         datasets: [{ // -> dentro do datasets, sera armazenado as informações dos dados 
           label: 'Revenue History', // -> label, sera o nome do dado que o gráfico corresponde
-          data: [1,2,3,4,5], // -> data sera onde sera armazenado os dados do grafico 
+          data: [ {{ $valoresRevenueGrafico }} ], // -> data sera onde sera armazenado os dados do grafico 
           borderColor: '#198754', // -> altera a cor da borda do grafico 
           backgroundColor: '#198754', // -> altera a cor do fundo
           color: '#198754', // -> altera a cor da fonte
@@ -131,21 +131,19 @@
 </script>
 
 <script>
-   //Informa o id que sera responsável pela renderização
     const ctx2 = document.getElementById('myChart2');
 
-  //Informa novo grafico
     new Chart(ctx2, {
-      type: 'line', // -> type é o tipo do grafico
-      data: { // -> No data, é onde vai ficar armazenado as informaçãoes do gráfico
-        labels: ['January ','February ','March ','April','May'], // -> labels são os indices do gráfico
-        datasets: [{ // -> dentro do datasets, sera armazenado as informações dos dados 
-          label: 'CPM History', // -> label, sera o nome do dado que o gráfico corresponde
-          data: [10,2,31,42,5], // -> data sera onde sera armazenado os dados do grafico 
-          borderColor: '#198754', // -> altera a cor da borda do grafico 
-          backgroundColor: '#198754', // -> altera a cor do fundo
-          color: '#198754', // -> altera a cor da fonte
-          borderWidth: 1 // -> borderWidth sera a expessura da linha do grafico 
+      type: 'line', 
+      data: { 
+        labels: ['1','2','3','4','5'], 
+        datasets: [{ 
+          label: 'CPM History',
+          data: [ {{$valoresCpmGrafico }} ], 
+          borderColor: '#198754', 
+          backgroundColor: '#198754',
+          color: '#198754',
+          borderWidth: 1 
         }],
       },
       options: {

@@ -60,6 +60,7 @@
                 <a class="btn btn-outline-success" href="{{route('publisher.index')}}" role="button">Return</a>
                 <button type="submit" class="btn btn-success">Save</button>
             </div>
+
         </form>
     </div>
 </div>

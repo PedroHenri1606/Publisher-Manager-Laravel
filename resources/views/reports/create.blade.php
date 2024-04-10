@@ -36,14 +36,15 @@
                         {{ $errors->has('revenue') ? $errors->first('revenue') : ''}}
                     </div>
                 </div>
+
             </div>  
 
             <div class="mt-5">  
                 <a class="btn btn-outline-success" href="{{route('reports.index')}}" role="button">Return</a>
                 <button type="submit" class="btn btn-success">Create</button>
             </div>
-        </form>
 
+        </form>
     </div>
 </div>
 

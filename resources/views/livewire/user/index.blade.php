@@ -17,6 +17,7 @@
 
 
     <table class="table mt-2 border-light shadow text-center mt-4">
+    
       <thead>
         <tr>
           <th class="col item">
@@ -39,22 +40,23 @@
 
       <tbody>
         @foreach($users as $user)
-            <tr>
-              <td>{{ $user->id }}</td>
-              <td>{{ $user->name }}</td>
-              <td>{{ $user->email }}</td>
-                @if( $user->status === 1)
-                    <td class="active"> Active </td>
-                @else
-                    <td class="disactive"> Disactive</td>
-                @endif
-              <td>
-                <a class="btn btn-outline-success" href="{{ route('user.edit', ['user' => $user])}}" role="button">Edit user</a>
-                <a class="btn btn-success" href="{{ route('user.show', ['user' => $user])}}" role="button">Details</a>
-              </td>
-              </tr>
+          <tr>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+              @if( $user->status === 1)
+                  <td class="active"> Active </td>
+              @else
+                  <td class="disactive"> Disactive</td>
+              @endif
+            <td>
+              <a class="btn btn-outline-success" href="{{ route('user.edit', ['user' => $user])}}" role="button">Edit user</a>
+              <a class="btn btn-success" href="{{ route('user.show', ['user' => $user])}}" role="button">Details</a>
+            </td>
+          </tr>
         @endforeach
       </tbody>
+
     </table>
   </div>
 </div>

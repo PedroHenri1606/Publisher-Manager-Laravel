@@ -17,6 +17,7 @@
     </div>
 
     <table class="table mt-2 border-light shadow text-center mt-4">
+      
       <thead>
         <tr>
           <th class="col">
@@ -46,28 +47,30 @@
           </th>
         </tr>
       </thead>
+
       <tbody>
-          @foreach($domains as $domain)
-              <tr>
-                <td>{{ $domain->id }}</td>
-                <td>{{ $domain->domain }}</td>
-                @is('admin')
-                <td>{{ $domain->publisher->name }}</td>
-                @endis
-                <td>{{ $domain->revshare }}%</td>
-                  @if( $domain->status === 1)
-                      <td class="active"> Active </td>
-                  @else
-                      <td class="disactive"> Disactive</td>
-                  @endif
-                <td>
-                  <a class="btn btn-outline-success" href="{{ route('reports.show', ['domain' => $domain])}}" role="button">Details</a>
-                  <a class="btn btn-outline-success" href="{{ route('reports.create', ['domain' => $domain])}}" role="button">Create Log</a>
-                  <a class="btn btn-success" href="{{ route('reports.historic', ['domain' => $domain->id])}}" role="button">View Historic</a>
-                </td>
-                </tr>
-          @endforeach
+        @foreach($domains as $domain)
+          <tr>
+            <td>{{ $domain->id }}</td>
+            <td>{{ $domain->domain }}</td>
+            @is('admin')
+            <td>{{ $domain->publisher->name }}</td>
+            @endis
+            <td>{{ $domain->revshare }}%</td>
+              @if( $domain->status === 1)
+                  <td class="active"> Active </td>
+              @else
+                  <td class="disactive"> Disactive</td>
+              @endif
+            <td>
+              <a class="btn btn-outline-success" href="{{ route('reports.show', ['domain' => $domain])}}" role="button">Details</a>
+              <a class="btn btn-outline-success" href="{{ route('reports.create', ['domain' => $domain])}}" role="button">Create Log</a>
+              <a class="btn btn-success" href="{{ route('reports.historic', ['domain' => $domain->id])}}" role="button">View Historic</a>
+            </td>
+          </tr>
+        @endforeach
       </tbody>
+      
     </table>
   </div>
 </div>

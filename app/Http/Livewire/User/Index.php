@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
 
-class UserIndex extends Component
+class Index extends Component
 {
+
     public $input;
     public $users;
     public $tempSort = 0;
@@ -54,6 +55,6 @@ class UserIndex extends Component
 
     public function render()
     {
-        return view('livewire.user-index');
+        return view('livewire.user.index');
     }
 }

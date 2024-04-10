@@ -4,6 +4,6 @@
 
 @section('content')
 
-@livewire('user-index')
+@livewire('user.index')
 
 @endsection

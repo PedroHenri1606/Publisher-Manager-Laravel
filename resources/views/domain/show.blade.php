@@ -69,6 +69,7 @@
             <tr>
         </form>
     </div>
+    
 </div>
 
 @endsection

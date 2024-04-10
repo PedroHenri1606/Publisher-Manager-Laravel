@@ -9,28 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DomainController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return view('domain.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $publishers = Publisher::all();
-
         return view('domain.create', ['publishers' => $publishers]);
-
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $validations = [
@@ -48,9 +40,9 @@ class DomainController extends Controller
         $request->validate($validations, $feedbacks);
 
         $domain = new Domain();
-        $domain->domain = $request->domain;
-        $domain->revshare = $request->revshare;
-        $domain->status = $request->status;
+            $domain->domain = $request->domain;
+            $domain->revshare = $request->revshare;
+            $domain->status = $request->status;
 
         if($request->publisher_id == ''){
             if(Auth::check()){
@@ -58,7 +50,6 @@ class DomainController extends Controller
 
                 $publisher = Publisher::where('email', $publisher->email)->first();
                 $domain['publisher_id'] = $publisher->id;
-                
             }
 
         } else {
@@ -70,17 +61,13 @@ class DomainController extends Controller
         return redirect()->route('domain.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Domain $domain)
     {
         return view('domain.show', ['domain'=> $domain]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(Domain $domain)
     {
         $user = Auth::user();
@@ -94,10 +81,14 @@ class DomainController extends Controller
 
             //Tera acesso a editar somente os domains que pertencem a ele
             if($publisher->id == $domain->publisher_id){
+
                 return view('domain.edit', ['publishers' => $publishers, 'domain' => $domain]);
+
             } else {
+
                 return redirect()->route('domain.index');
             }
+
         } else {
 
             //Condição se ele for admin - tera acesso a editar todos os domains cadastrados
@@ -105,12 +96,9 @@ class DomainController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Domain $domain)
     {
-
         $validations = [
             'domain' => 'required',
             'revshare' => 'required',
@@ -129,13 +117,10 @@ class DomainController extends Controller
         return redirect()->route('domain.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Domain $domain)
     {
         $domain->delete();
-
         return redirect()->route('domain.index', ['domain' => $domain->id]);
     }
 }

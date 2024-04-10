@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +12,7 @@ class LoginController extends Controller
         return view("login.create");
     }
    
+
     public function index(Request $request){
 
         $erro = '';
@@ -26,6 +26,7 @@ class LoginController extends Controller
 
         return view('login.index', ['erro' => $erro]);
     }
+
 
     public function authentication(Request $request){
         
@@ -42,6 +43,7 @@ class LoginController extends Controller
             return redirect()->route('login', ['erro' => 1]);
         }
     }
+
 
     public function logout(Request $request){
         Auth::logout();

@@ -4,6 +4,6 @@
 
 @section('content')
 
-@livewire('domain-index')
+@livewire('domain.index')
 
 @endsection

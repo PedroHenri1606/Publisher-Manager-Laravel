@@ -7,51 +7,24 @@ use App\Models\Publisher;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PublisherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $publishers = Publisher::paginate(10);
-
         return view('publisher.index', ['publishers' => $publishers]);
     }
 
-    public function find(Request $request)
-    {
-        //Verifica possui autenticação
-        if(Auth::check()){
-            //id do publisher que desejamos acessar 
-            $id = $request->input('id');
-                $publisher = Publisher::where('id', $id)->first();
 
-                //Se informar um valor invalido, retorna ao index 
-                if($publisher == null){
-                    $publisher = Publisher::paginate(10);
-                    return view('publisher.index', ['publishers' => $publisher]);
-                }
-         
-        }
-        return view ('publisher.edit', ['publisher' => $publisher]);
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(Request $request)
     {
         $roles = Role::all();
         return view('publisher.create',['roles' => $roles]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request, Publisher $publisher)
     {
         $validations = [
@@ -82,6 +55,7 @@ class PublisherController extends Controller
         
         $request->validate($validations, $feedbacks);
         
+        //Criação do usuario
         $user = new User;
         $user->name = $request->name;
         $user->email =  $request->email;
@@ -89,11 +63,13 @@ class PublisherController extends Controller
         $user->status = true;
         $user->save();
         
+        //Definição da role do usuario 
         $role = defender()->findRole('publisher');
         $user->attachRole($role);
         
         $usuarioPublisher = User::where('email', $user->email)->first();
 
+        //Criação do usuario Publisher
         $publisher->name = $request->name;
         $publisher->phone = $request->phone;
         $publisher->email = $request->email;
@@ -105,28 +81,21 @@ class PublisherController extends Controller
         return redirect()->route('publisher.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Publisher $publisher)
     {
         $domains = Domain::where('publisher_id', $publisher->id)->get();
-
         return view('publisher.show', ['publisher' => $publisher, 'domains' => $domains]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Publisher $publisher)
     {
         $roles = Role::all(); 
         return view('publisher.edit', ['publisher' => $publisher, 'roles' => $roles]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Publisher $publisher)
     {
         $validations = [
@@ -156,22 +125,17 @@ class PublisherController extends Controller
         ];
 
         $request->validate($validations, $feedbacks);
-        $publisher['password'] = bcrypt($request->password);
 
+        $publisher['password'] = bcrypt($request->password);
         $publisher->update($request->all());
 
         return redirect()->route('publisher.index');
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Publisher $publisher)
     {
-
         $publisher->delete();
-
         return redirect()->route('publisher.index', ['publisher' => $publisher->id]);
     }
 }

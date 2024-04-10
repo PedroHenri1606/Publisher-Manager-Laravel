@@ -41,19 +41,20 @@
 
       <tbody>
         @foreach($publishers as $publisher)
-            <tr>
-              <td>{{ $publisher->id }}</td>
-              <td>{{ $publisher->name }}</td>
-              <td>{{ $publisher->phone }}</td>
-              <td>{{ $publisher->email }}</td>
-              <td>{{ $publisher->document }}</td>
-              <td>
-                <a class="btn btn-outline-success" href="{{ route('publisher.edit', ['publisher' => $publisher])}}" role="button">Edit Publisher</a>
-                <a class="btn btn-success" href="{{ route('publisher.show', ['publisher' => $publisher])}}" role="button">Details</a>
-              </td>
-              </tr>
+          <tr>
+            <td>{{ $publisher->id }}</td>
+            <td>{{ $publisher->name }}</td>
+            <td>{{ $publisher->phone }}</td>
+            <td>{{ $publisher->email }}</td>
+            <td>{{ $publisher->document }}</td>
+            <td>
+              <a class="btn btn-outline-success" href="{{ route('publisher.edit', ['publisher' => $publisher])}}" role="button">Edit Publisher</a>
+              <a class="btn btn-success" href="{{ route('publisher.show', ['publisher' => $publisher])}}" role="button">Details</a>
+            </td>
+          </tr>
         @endforeach
       </tbody>
+
     </table>
   </div>
 </div>

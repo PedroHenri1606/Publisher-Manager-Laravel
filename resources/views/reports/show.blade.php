@@ -7,7 +7,7 @@
 <div class= "container tabela border-light shadow text-center">
     <div class="container">
         <div class="opcoes">
-            Domain Revenue
+            Domain Revenue Details
         </div>
 
         <form>
@@ -47,18 +47,19 @@
                             </select>
                         </div>
                     </div>
+
                 </div>
             </fieldset>
         </form>
 
         <div class="row card shadow mt-2">
+
             <div class="row mt-2">
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
                         <h3>Total Impressions: {{ $totalImpressions }} </h3>
                     </article>
                 </div>
-
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
                         <h3>Total Revenue: ${{ $totalRevenue }}</h3>
@@ -72,14 +73,13 @@
                         <h3>Average CPM: $ {{ $cpmAverage}} </h3>
                     </article>
                 </div>
-
-
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
                         <h3>Average RPM: ${{ $rpmAverage}}</h3>
                     </article>
                 </div>
             </div>
+
         </div>
 
         <div class="row shadow justify-content-center mt-2">
@@ -87,7 +87,7 @@
                 <canvas id="myChart2"></canvas> {{-- o id="myChart" sera o responsavel por informar ao script onde deve ser renderizado o grafico que leva o nome do id--}}
             </div>
             <div class=" card col-6">
-                <canvas id="myChart1"></canvas> {{-- o id="myChart" sera o responsavel por informar ao script onde deve ser renderizado o grafico que leva o nome do id--}}
+                <canvas id="myChart1"></canvas> 
             </div>
         </div>
 
@@ -103,21 +103,21 @@
 @section('script')
   <script>
 
-  //Informa o id que sera responsável pela renderização
+    //Informa o id que sera responsável pela renderização
     const ctx1 = document.getElementById('myChart1');
 
-  //Informa novo grafico
+    //Informa novo grafico
     new Chart(ctx1, {
-      type: 'bar', // -> type é o tipo do grafico
-      data: { // -> No data, é onde vai ficar armazenado as informaçãoes do gráfico
-        labels: [ {{ $indiceRevenueGrafico }} ], // -> labels são os indices do gráfico
-        datasets: [{ // -> dentro do datasets, sera armazenado as informações dos dados 
-          label: 'Revenue History', // -> label, sera o nome do dado que o gráfico corresponde
-          data: [ {{ $valoresRevenueGrafico }} ], // -> data sera onde sera armazenado os dados do grafico 
-          borderColor: '#198754', // -> altera a cor da borda do grafico 
-          backgroundColor: '#198754', // -> altera a cor do fundo
-          color: '#198754', // -> altera a cor da fonte
-          borderWidth: 1 // -> borderWidth sera a expessura da linha do grafico 
+      type: 'bar',                                      // -> type é o tipo do grafico
+      data: {                                           // -> No data, é onde vai ficar armazenado as informaçãoes do gráfico
+        labels: [ {{ $indiceRevenueGrafico }} ],        // -> labels são os indices do gráfico
+        datasets: [{                                    // -> dentro do datasets, sera armazenado as informações dos dados 
+          label: 'Revenue History',                     // -> label, sera o nome do dado que o gráfico corresponde
+          data: [ {{ $valoresRevenueGrafico }} ],       // -> data sera onde sera armazenado os dados do grafico 
+          borderColor: '#198754',                       // -> altera a cor da borda do grafico 
+          backgroundColor: '#198754',                   // -> altera a cor do fundo
+          color: '#198754',                             // -> altera a cor da fonte
+          borderWidth: 1                                // -> borderWidth sera a expessura da linha do grafico 
         }],
       },
       options: {

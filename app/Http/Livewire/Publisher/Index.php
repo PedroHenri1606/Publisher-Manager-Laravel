@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Publisher;
 
 use App\Models\Publisher;
 use Livewire\Component;
 
-class PublisherIndex extends Component
+class Index extends Component
 {
+
     public Publisher $publisher;
     public $input;
 
@@ -39,9 +40,8 @@ class PublisherIndex extends Component
 
         $this->publishers = $userArray;    
     }
-
     public function render()
     {
-        return view('livewire.publisher-index');
+        return view('livewire.publisher.index');
     }
 }

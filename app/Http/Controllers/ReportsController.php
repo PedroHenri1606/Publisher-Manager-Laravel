@@ -15,16 +15,19 @@ class ReportsController extends Controller
         return view("reports.index");
     }
 
+
     public function historic(Domain $domain){
 
         $user = Auth::user();
 
         //se o usuario autenticado for publisher
         if(Publisher::where('email', $user->email)->exists()){
+            
             $publisher = Publisher::where('email', $user->email)->first();
 
             //se o publisher_id do domain informado for diferente do id do publisher, encerra a função e envia novamente para a reports.index
             if($domain->publisher_id != $publisher->id){
+
                 return redirect()->route('reports.index');
             
             } else {
@@ -42,9 +45,11 @@ class ReportsController extends Controller
         }
     }
 
+
     public function create(Domain $domain){
         return view('reports.create', ['domain' => $domain]);
     }
+
 
     public function store(Request $request){
 
@@ -72,8 +77,8 @@ class ReportsController extends Controller
         $revenueDomain->save();
        
         return redirect()->route('reports.index');
-        
     }
+
 
     public function show(Domain $domain){
         
@@ -121,24 +126,25 @@ class ReportsController extends Controller
 
                     //Valores presentes nos cards de informações do site
                     $revenuesDomain = RevenueDomain::where('domain_id', $domain->id)->get();
+                        foreach($revenuesDomain as $indice => $valor){
 
-                    foreach($revenuesDomain as $indice => $valor){
-                        $cpmAverage += $revenuesDomain[$indice]->cpm / $revenuesDomain->count();
-                            $cpmAverage = number_format($cpmAverage,2);
+                            $cpmAverage += $revenuesDomain[$indice]->cpm / $revenuesDomain->count();
+                                $cpmAverage = number_format($cpmAverage,2);
 
-                        $rpmAverage += $revenuesDomain[$indice]->rpm / $revenuesDomain->count();
-                            $rpmAverage = number_format($rpmAverage,2);
+                            $rpmAverage += $revenuesDomain[$indice]->rpm / $revenuesDomain->count();
+                                $rpmAverage = number_format($rpmAverage,2);
 
-                        if($revenuesDomain[$indice]->revenue > $totalRevenue){
-                            $totalRevenue += $revenuesDomain[$indice]->revenue;
+                            if($revenuesDomain[$indice]->revenue > $totalRevenue){
+                                $totalRevenue += $revenuesDomain[$indice]->revenue;
+                            }
+
+                            if($revenuesDomain[$indice]->impressions > $totalImpressions){
+                                $totalImpressions += $revenuesDomain[$indice]->impressions;
+                                
+                            }
                         }
 
-                        if($revenuesDomain[$indice]->impressions > $totalImpressions){
-                            $totalImpressions += $revenuesDomain[$indice]->impressions;
-                            
-                        }
-                    }
-
+                    //formatação dos numeros de impressões e revenue
                     $totalImpressions = (number_format($totalImpressions,0,',','.'));
                     $totalRevenue = (number_format($totalRevenue,2,',','.'));
 
@@ -154,10 +160,8 @@ class ReportsController extends Controller
         //se o usuario autenticado for um admin
         } else {
 
-            //Se o domain possuir um historic log, ira enviar revenue com os dados do domain
             if(RevenueDomain::where('domain_id', $domain->id)->exists()){
 
-                //Valores presentes no grafico CPM
                 $valoresCpmGrafico = RevenueDomain::where('domain_id', $domain->id)->pluck('cpm')->toArray();
 
                     $indiceCpmGrafico = range(1, count($valoresCpmGrafico));
@@ -165,7 +169,6 @@ class ReportsController extends Controller
 
                 $valoresCpmGrafico = implode(',', $valoresCpmGrafico);
 
-                //Valores presentes no grafico Revenue
                 $valoresRevenueGrafico = RevenueDomain::where('domain_id', $domain->id)->pluck('revenue')->toArray();
 
                     $indiceRevenueGrafico = range(1, count($valoresRevenueGrafico));
@@ -173,25 +176,23 @@ class ReportsController extends Controller
 
                 $valoresRevenueGrafico = implode(',', $valoresRevenueGrafico);
 
-                //Valores presentes nos cards de informações do site
                 $revenuesDomain = RevenueDomain::where('domain_id', $domain->id)->get();
+                    foreach($revenuesDomain as $indice => $valor){
 
-                foreach($revenuesDomain as $indice => $valor){
-                    $cpmAverage += $revenuesDomain[$indice]->cpm / $revenuesDomain->count();
-                        $cpmAverage = number_format($cpmAverage,2);
+                        $cpmAverage += $revenuesDomain[$indice]->cpm / $revenuesDomain->count();
+                            $cpmAverage = number_format($cpmAverage,2);
 
-                    $rpmAverage += $revenuesDomain[$indice]->rpm / $revenuesDomain->count();
-                        $rpmAverage = number_format($rpmAverage,2);
+                        $rpmAverage += $revenuesDomain[$indice]->rpm / $revenuesDomain->count();
+                            $rpmAverage = number_format($rpmAverage,2);
 
-                    if($revenuesDomain[$indice]->revenue > $totalRevenue){
-                        $totalRevenue += $revenuesDomain[$indice]->revenue;
+                        if($revenuesDomain[$indice]->revenue > $totalRevenue){
+                            $totalRevenue += $revenuesDomain[$indice]->revenue;
+                        }
+
+                        if($revenuesDomain[$indice]->impressions > $totalImpressions){
+                            $totalImpressions += $revenuesDomain[$indice]->impressions;
+                        }
                     }
-
-                    if($revenuesDomain[$indice]->impressions > $totalImpressions){
-                        $totalImpressions += $revenuesDomain[$indice]->impressions;
-                        
-                    }
-                }
 
                 $totalImpressions = (number_format($totalImpressions,0,',','.'));
                 $totalRevenue = (number_format($totalRevenue,2,',','.'));
@@ -205,6 +206,7 @@ class ReportsController extends Controller
             }
         } 
     }
+
 
     public function deleteRevenue(RevenueDomain $revenueDomain){
 

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Domain;
 
 use App\Models\Domain;
 use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class DomainIndex extends Component
+class Index extends Component
 {
+
     public $domains;
     public $input;
 
@@ -85,6 +86,6 @@ class DomainIndex extends Component
 
     public function render()
     {
-        return view('livewire.domain-index');
+        return view('livewire.domain.index');
     }
 }

@@ -4,6 +4,6 @@
 
 @section('content')
 
-@livewire('publisher-index')
+@livewire('publisher.index')
 
 @endsection

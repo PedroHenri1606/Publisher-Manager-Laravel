@@ -20,7 +20,6 @@ class ReportsController extends Controller
     }
 
     public function create(Domain $domain){
-
         return view('reports.create', ['domain' => $domain]);
     }
 
@@ -55,11 +54,34 @@ class ReportsController extends Controller
 
     public function show(Domain $domain){
 
-        $revenueDomain = RevenueDomain::where('domain_id', $domain->id)->first();
-            
-            $domainDatas = RevenueDomain::where('domain_id', $domain->id)->get();
+        $revenueDomain = new RevenueDomain;
+                        
+        //Se o domain possuir um historic log, ira enviar revenue com os dados do domain
+        if(RevenueDomain::where('domain_id', $domain->id)->exists()){
 
-        return view('reports.show', compact('domain','revenueDomain'));
+            $revenueDomain = RevenueDomain::where('domain_id', $domain->id)->first();
+            
+            return view('reports.show', compact('domain','revenueDomain'));
+        
+        } else{
+
+            $revenueDomain->domain_id = $domain->id;
+            $revenueDomain->impressions = 0;
+            $revenueDomain->cpm = 0;
+            $revenueDomain->rpm = 0;
+            $revenueDomain->revenue = 0;
+
+            //Se o domain não possui um historic log, ire enviar revenues com os dados zerados
+            return view('reports.show', compact('domain','revenueDomain'));
+        }
     }
 
+    public function deleteRevenue(RevenueDomain $revenueDomain){
+
+        $domain = Domain::where('id', $revenueDomain->domain_id)->first();
+       
+        $revenueDomain->delete();
+
+        return redirect()->route('reports.historic', ['revenueDomain' => $revenueDomain, 'domain' => $domain]);
+    }
 }

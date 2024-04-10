@@ -55,13 +55,13 @@
             <div class="row mt-2">
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>Impressions: {{ $revenueDomain->impressions}} </h3>
+                        <h3>Total Impressions: {{ $revenueDomain->impressions}} </h3>
                     </article>
                 </div>
 
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>Revenue: ${{ $revenueDomain->revenue }}</h3>
+                        <h3>Total Revenue: ${{ $revenueDomain->revenue }}</h3>
                     </article>
                 </div>
             </div>
@@ -69,14 +69,14 @@
             <div class="row mt-2 mb-2">
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>CPM: ${{ $revenueDomain->cpm }} </h3>
+                        <h3>Average CPM: ${{ $revenueDomain->cpm }} </h3>
                     </article>
                 </div>
 
 
                 <div class="col-6">
                     <article class="card card_report shadow pt-2">
-                        <h3>RPM: ${{ $revenueDomain->rpm }}</h3>
+                        <h3>Average RPM: ${{ $revenueDomain->rpm }}</h3>
                     </article>
                 </div>
             </div>

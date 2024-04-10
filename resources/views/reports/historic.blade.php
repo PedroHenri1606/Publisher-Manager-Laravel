@@ -61,7 +61,11 @@
                 <td>${{ $revenueDomain->revenue }}</td>
                 <td>{{ $revenueDomain->created_at }}</td>
                 <td>
-                    <a class="btn btn-outline-success" href="" role="button">Delete</a>
+                    <form id="form_{{$revenueDomain}}" method="post" action="{{ route('reports.delete', ['revenueDomain' => $revenueDomain])}}">
+                    @method('DELETE')
+                    @csrf
+                        <a class="btn btn-outline-success" href="#" onclick="document.getElementById('form_{{$revenueDomain}}').submit()">Delete</a>
+                    </form>
                 </td>
             </tr>
           @endforeach

@@ -65,6 +65,9 @@ Route::middleware(['auth'])->prefix('/system')->group(function(){
     //---REPORTS POST
     Route::post('/reports', [ReportsController::class, 'store'])->name('reports.store');
 
+    //---REPORTS DELETE
+    Route::delete('/reports/historic/{revenueDomain}', [ReportsController::class,'deleteRevenue'])->name('reports.delete');
+
 //------------------------------------------------------------------------------------------------------------------------
 
     //---USER GET

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Email;
+use App\Mail\OrderShipped;
 use App\Models\Domain;
 use App\Models\Publisher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class DomainController extends Controller
 {
@@ -59,7 +63,7 @@ class DomainController extends Controller
         $domain->save();
         
         return redirect()->route('domain.index');
-    }
+    }   
 
 
     public function show(Domain $domain)

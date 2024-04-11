@@ -23,26 +23,19 @@
         <div class="container login">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form method="post" action="{{ route('login')}}">
+                    <form method="post" action="{{ route('login.sendEmail')}}">
                         @csrf
                         <div class="bg-light shadow p-5">
                             <h2 class="mb-5 text-center">
-                                Publisher Manager
+                                Confirm your email
                             </h2>
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-                                {{ $errors->has('email') ? $errors->first('email') : ''}}
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                                {{ $errors->has('password') ? $errors->first('password') : ''}}
-                                {{ isset($erro) && $erro != '' ? $erro : ''}}           
-                            </div>
-                            <div class="text-end">
-                                <a href="{{ route('login.showForm')}}">forgot password</a>
+                                <p class="text-center">{{ isset($erro) && $erro != '' ? $erro : ''}}</p>  
                             </div>
                             <div class="text-center mt-5">
-                                <button class="btn btn-success btn-block col-8" type="submit">Login</button>
+                                <a href=" {{route('login') }}" class="btn btn-outline-success btn-block col-2" type="submit">Return</a>
+                                <button class="btn btn-success btn-block col-6" type="submit">Send Email</button>
                             </div>
                         </div>           
                     </form>

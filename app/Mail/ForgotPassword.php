@@ -10,18 +10,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderShipped extends Mailable
+class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $token;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -32,8 +34,8 @@ class OrderShipped extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address('pedrohenri1606@gmail.com', 'Pedro Henrique'),
-            subject: 'Order Shipped',
+            from: new Address('pedrohenri1606@gmail.com','Pedro'),
+            subject: 'Forgot you password?',
         );
     }
 

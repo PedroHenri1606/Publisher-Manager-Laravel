@@ -23,26 +23,23 @@
         <div class="container login">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form method="post" action="{{ route('login')}}">
+                    <form method="post" action="{{ route('login.reset', ['token' => $token])}}">
                         @csrf
                         <div class="bg-light shadow p-5">
                             <h2 class="mb-5 text-center">
-                                Publisher Manager
+                                Reset Password
                             </h2>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-                                {{ $errors->has('email') ? $errors->first('email') : ''}}
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Your New password">
+                                {{ $errors->has('password') ? $errors->first('password') : ''}}
                             </div>
                             <div class="mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                                {{ $errors->has('password') ? $errors->first('password') : ''}}
+                                <input type="password" class="form-control" id="repetpassword" name="repetpassword" placeholder="Repet Your New Password">
+                                {{ $errors->has('repetpassword') ? $errors->first('repetpassword') : ''}}
                                 {{ isset($erro) && $erro != '' ? $erro : ''}}           
                             </div>
-                            <div class="text-end">
-                                <a href="{{ route('login.showForm')}}">forgot password</a>
-                            </div>
                             <div class="text-center mt-5">
-                                <button class="btn btn-success btn-block col-8" type="submit">Login</button>
+                                <button class="btn btn-success btn-block col-8" type="submit">Send</button>
                             </div>
                         </div>           
                     </form>
@@ -50,5 +47,4 @@
             </div>
         </div>
     </body>
-
 </html>

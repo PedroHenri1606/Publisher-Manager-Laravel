@@ -8,15 +8,25 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
+//------------------------------------------------------------------------------------------------------------------------
+
+    //---LOGIN 
     Route::get('/{erro?}', [LoginController::class,'index'])->name('login');
     Route::post('/', [LoginController::class,'authentication'])->name('login');
 
+    //---LOGIN FORGOT PASSWORD
+    Route::get('/login/showForm/{erro?}', [LoginController::class,'showForm'])->name('login.showForm');
+    Route::post('/login/sendEmail',[LoginController::class,'sendEmail'])->name('login.sendEmail');
+    Route::get('/login/reset-password/{token}/{erro?}', [LoginController::class,'showFormReset'])->name('login.showFormReset');
+    Route::post('/login/reset-password/{token}', [LoginController::class,'reset'])->name('login.reset');
 
-//for more information about routes, use the command: php artisan route:list
-Route::middleware(['auth'])->prefix('/system')->group(function(){
-    
 //------------------------------------------------------------------------------------------------------------------------
 
+
+//for more information about routes, use the command: php artisan route:list
+Route::middleware(['auth'])->prefix('/system')->group(function(){    
+//------------------------------------------------------------------------------------------------------------------------
+    
     //---PUBLISHER GET
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index')->middleware('needsRole:admin');
     Route::get('/publisher/create', [PublisherController::class, 'create'])->name('publisher.create')->middleware('needsRole:admin');

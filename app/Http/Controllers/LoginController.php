@@ -101,17 +101,37 @@ class LoginController extends Controller
 
             $user = User::where('reset_password_token', $request->token)->first();
 
-            $user->update([
-                'password' => bcrypt($request->password),
-                'reset_password_token' => null,
-            ]);
+            $validations =[
+                'password' => 'required|min:5|max:100',
+                'repetpassword' => 'required|min:5|max:100',
+            ];
 
+            $feedbacks = [
+                'password.required' => 'Password is a required field',
+                'password.min' => 'Password must contain at least 5 characters',
+                'password.max' => 'Password must contain up to 100 characters',
 
-            return redirect()->route('login');
+                'repetpassword.required' => 'Repet Password is a required field',
+                'repetpassword.min' => 'Repet Password must contain at least 5 characters',
+                'repetpassword.max' => 'Reset Password must contain up to 100 characters',
+            ];
+
+            $request->validate( $validations, $feedbacks );
+
+            if($request->password == $request->repetpassword){
+
+                $user->update([
+                    'password' => bcrypt($request->password),
+                    'reset_password_token' => null,
+                ]);
+    
+                return redirect()->route('login');
+            }
+
+            return view('login.form_reset', ['token' => $token, 'erro' => 'Passwords entered are not similar']);
 
         } else {
 
-          
             return redirect()->route('login'); 
         }
     }
